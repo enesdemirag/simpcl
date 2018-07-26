@@ -1,4 +1,4 @@
-// Getting points between 0.5m to 20m with "Passthrough Filter"
+// Getting points between 0.5m to 15m with "Passthrough Filter"
 
 // Import dependencies
 #include <ros/ros.h>
