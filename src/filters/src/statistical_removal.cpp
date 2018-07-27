@@ -1,4 +1,5 @@
 // Remove noise with "Statistical Outlier Removal Filter"
+// http://pointclouds.org/documentation/tutorials/statistical_outlier.php
 
 // Import dependencies
 #include <ros/ros.h>

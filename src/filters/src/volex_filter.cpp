@@ -1,4 +1,5 @@
 // Downsampling with "Voxel Grid Filter"
+// http://pointclouds.org/documentation/tutorials/voxel_grid.php
 
 // Import dependencies
 #include <ros/ros.h>
