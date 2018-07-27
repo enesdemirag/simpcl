@@ -17,11 +17,14 @@ add_definitions(${PCL_DEFINITIONS})
 # Volex Grid Filter Node
 add_executable (volex_filter src/volex_filter.cpp)
 target_link_libraries (volex_filter ${PCL_LIBRARIES})
+target_link_libraries(volex_filter ${catkin_LIBRARIES})
 
 # PassThrough Filter Node
 add_executable (passthrough_filter src/passthrough_filter.cpp)
 target_link_libraries (passthrough_filter ${PCL_LIBRARIES})
+target_link_libraries(passthrough_filter ${catkin_LIBRARIES})
 
 # Statistical Outlier Removal Filter Node
 add_executable (statistical_removal src/statistical_removal.cpp)
 target_link_libraries (statistical_removal ${PCL_LIBRARIES})
+target_link_libraries(statistical_removal ${catkin_LIBRARIES})
