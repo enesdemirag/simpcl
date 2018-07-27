@@ -1,8 +1,0 @@
-prefix=/home/enes/GitHub/zed_filtering/devel/.private/filters
-
-Name: filters
-Description: Description of filters
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/enes/GitHub/zed_filtering/devel/.private/filters/lib 
-Requires: 
