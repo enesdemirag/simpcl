@@ -6,46 +6,48 @@
 #include <iostream>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
-#include <pcl/filters/statistical_outlier_removal.h>
+#include <pcl/point_cloud.h>
+#include <pcl_conversions/pcl_conversions.h>
 #include <sensor_msgs/PointCloud2.h>
+#include <pcl/filters/statistical_outlier_removal.h>
 
 // Definitions
-typedef pcl::PCLPointCloud2 PC2;
+//typedef pcl::PCLPointCloud2 PC2;
+ros::Publisher pub;
 
 // callback
-void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& passed_cloud)
+void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& passed_cloud)
 {
     //Create point cloud object for cleaned_cloud
-    PC2::Ptr cleaned_cloud (new PC2);
-    cleaned_cloud->header.frame_id = "cleaned_tf_frame";
-    cleaned_cloud->height = cleaned_cloud->width = 1;
+    sensor_msgs::PointCloud2 cleaned_cloud;
 
     // Create the Statistical Outlier Removal Filter
     pcl::StatisticalOutlierRemoval<pcl::PointXYZ> s_filter;
-    s_filter.setInputCloud (passed_cloud); // Pass passed_cloud to the filter
-    s_filter.setMeanK (50); // The number of neighbors to analyze for each point is set to 50
-    s_filter.setStddevMulThresh (1.0); // Standard deviation multiplier set to 1
-    s_filter.filter (*cleaned_cloud); // Store output data in cleaned_cloud
+    s_filter.setInputCloud(passed_cloud); // Pass passed_cloud to the filter
+    s_filter.setMeanK(50); // The number of neighbors to analyze for each point is set to 50
+    s_filter.setStddevMulThresh(1.0); // Standard deviation multiplier set to 1
+    s_filter.filter(*cleaned_cloud); // Store output data in cleaned_cloud
+
+    pub.publish(cleaned_cloud); // Publish cleaned_cloud to the /cloud_cleaned topic
 }
 
 // main
 int main(int argc, char** argv[])
 {
-    // Create node
+    // Initialize ROS
     ros::init(argc, argv, "statistical_removal");
     ros::NodeHandle n;
-    ros::Rate loop_rate(60);
-
-    // Create Publisher
-    ros::Publisher pub = n.advertise<PC2>("/cloud_cleaned", 1);
+    //ros::Rate loop_rate(60);
 
     // Create Subscriber and listen /cloud_passed topic
-    ros::Subscriber sub = n.subscribe<PC2>("/cloud_passed", 1, cloud_cb);
+    ros::Subscriber sub = n.subscribe("/cloud_passed", 1, cloud_cb);
 
-    pub.publish(cleaned_cloud); // Publish cleaned_cloud to the /cloud_cleaned topic
+    // Create Publisher
+    pub = n.advertise<sensor_msgs::PointCloud2>("/cloud_cleaned", 1);
 
-    // Kill node
-    ros::spinOnce();
-    loop_rate.sleep();
+    // Spin
+    ros::spin();
+    //ros::spinOnce();
+    //loop_rate.sleep();
     return 0;
 }
