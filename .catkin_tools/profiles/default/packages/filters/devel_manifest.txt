@@ -1,4 +1,0 @@
-filters
-/home/enes/GitHub/zed_filtering/devel/.private/filters/lib/pkgconfig/filters.pc /home/enes/GitHub/zed_filtering/devel/lib/pkgconfig/filters.pc
-/home/enes/GitHub/zed_filtering/devel/.private/filters/share/filters/cmake/filtersConfig.cmake /home/enes/GitHub/zed_filtering/devel/share/filters/cmake/filtersConfig.cmake
-/home/enes/GitHub/zed_filtering/devel/.private/filters/share/filters/cmake/filtersConfig-version.cmake /home/enes/GitHub/zed_filtering/devel/share/filters/cmake/filtersConfig-version.cmake
