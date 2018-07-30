@@ -12,7 +12,6 @@
 #include <pcl/filters/voxel_grid.h>
 
 // Definitions
-//typedef pcl::PCLPointCloud2 PC2;
 ros::Publisher pub;
 
 // callback
@@ -28,34 +27,31 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 
     // Perform the VoxelGrid Filter
     pcl::VoxelGrid<pcl::PCLPointCloud2> v_filter;
-    v_filter.setInputCloud(raw_cloud); // Pass raw_cloud to the filter
-    v_filter.setLeafSize(0.01f, 0.01f, 0.01f); // Set leaf size of 1cm
+    v_filter.setInputCloud(cloudPtr); // Pass raw_cloud to the filter
+    v_filter.setLeafSize(0.05f, 0.05f, 0.15f); // Set leaf size
     v_filter.filter(downsampled_cloud); // Store output data in downsampled_cloud
 
     // Convert to ROS data type
-    sensor_msgs::PointCloud2 output;
+    sensor_msgs::PointCloud2 output_cloud;
     pcl_conversions::moveFromPCL(downsampled_cloud, output_cloud);
 
     pub.publish(output_cloud); // Publish downsampled_cloud to the /cloud_downsampled topic
 }
 
 // main
-int main(int argc, char** argv[])
+int main(int argc, char **argv)
 {
     // Initialize ROS
-    ros::init(argc, argv, "volex_filter");
+    ros::init(argc, argv, "voxel_filter");
     ros::NodeHandle n;
-    //ros::Rate loop_rate(60);
 
     // Create Subscriber and listen /zed/point_cloud/cloud_registered topic
-    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>("/zed/point_cloud/cloud_registered", 1, cloud_cb);
+    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>("/point_cloud/cloud_registered", 1, cloud_cb);
 
     // Create Publisher
     pub = n.advertise<sensor_msgs::PointCloud2>("cloud_downsampled", 1);
 
     // Spin
     ros::spin();
-    //ros::spinOnce();
-    //loop_rate.sleep();
     return 0;
 }
