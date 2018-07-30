@@ -28,8 +28,8 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Perform the PassThrough Filter
     pcl::PassThrough<pcl::PCLPointCloud2> p_filter;
     p_filter.setInputCloud(cloudPtr); // Pass downsampled_cloud to the filter
-    p_filter.setFilterFieldName("z"); // Set axis
-    p_filter.setFilterLimits(0.3, 15.0); // Set limits 0.3m to 15m
+    p_filter.setFilterFieldName("x"); // Set axis as x
+    p_filter.setFilterLimits(0.5, 18.0); // Set limits 0.5m to 18m
     p_filter.filter(passed_cloud); // Store output data in passed_cloud
 
     // Convert to ROS data type
