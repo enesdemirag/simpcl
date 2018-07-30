@@ -1,6 +1,0 @@
-devel_space: /home/enes/GitHub/zed_filtering/devel
-install: false
-install_space: /home/enes/GitHub/zed_filtering/install
-profile: default
-source_space: /home/enes/GitHub/zed_filtering/src
-workspace: /home/enes/GitHub/zed_filtering
