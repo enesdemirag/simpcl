@@ -1,9 +1,11 @@
 # Documents about Point Cloud Processing #
 
-* **An Efficient Probabilistic 3D Mapping Framework Based on Octrees** - *[OctoMap](http://web.itu.edu.tr/demirag16/media/docs/OctoMap.pdf)*
+* **An Efficient Probabilistic 3D Mapping Framework Based on Octrees** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/OctoMap.pdf)*
 
-* **Fast Resampling of 3D Point Clouds via Graphs.** - *[Resampling](http://web.itu.edu.tr/demirag16/media/docs/FastResamplingof3DPointCloudsviaGraphs.pdf)*
+* **3D Mapping with OctoMap** - *[Presentation](http://www2.informatik.uni-freiburg.de/~hornunga/pub/hornung13roscon.pdf)*
 
-* **Modeling the World Around Us** - *[Overview](http://web.itu.edu.tr/demirag16/media/docs/MappingOverview.pdf)*
+* **Fast Resampling of 3D Point Clouds via Graphs.** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/FastResamplingof3DPointCloudsviaGraphs.pdf)*
+
+* **Modeling the World Around Us** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/MappingOverview.pdf)*
 
 * **Pairwise, Rigid Registration The ICP Algorithm and Its Variants** - *[Presentation](Pairwise-RigidRegistration.pdf)*
