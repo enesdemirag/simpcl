@@ -9,15 +9,17 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+catkin_package()
+
 include_directories(${catkin_INCLUDE_DIRS})
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
-# Volex Grid Filter Node
-add_executable (volex_filter src/volex_filter.cpp)
-target_link_libraries (volex_filter ${PCL_LIBRARIES})
-target_link_libraries(volex_filter ${catkin_LIBRARIES})
+# VoxelGrid Filter Node
+add_executable(voxel_filter src/voxel_filter.cpp)
+target_link_libraries(voxel_filter ${PCL_LIBRARIES})
+target_link_libraries(voxel_filter ${catkin_LIBRARIES})
 
 # PassThrough Filter Node
 add_executable (passthrough_filter src/passthrough_filter.cpp)
