@@ -28,8 +28,8 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Perform the Statistical Outlier Removal Filter
     pcl::StatisticalOutlierRemoval<pcl::PCLPointCloud2> s_filter;
     s_filter.setInputCloud(cloudPtr); // Pass passed_cloud to the filter
-    s_filter.setMeanK(50); // The number of neighbors to analyze for each point is set to 50
-    s_filter.setStddevMulThresh(0.5); // Standard deviation multiplier set to 0.5
+    s_filter.setMeanK(75); // The number of neighbors to analyze for each point is set to 50
+    s_filter.setStddevMulThresh(1.25); // Standard deviation multiplier set to 1.0
     s_filter.filter(cleaned_cloud); // Store output data in cleaned_cloud
 
     // Convert to ROS data type
