@@ -29,7 +29,8 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Fill the ModelCoefficients values
     pcl::ModelCoefficients::Ptr coefficients(new pcl::ModelCoefficients());
     coefficients->values.resize(4);
-    coefficients->values[0] = coefficients->values[1] = 0;
+    coefficients->values[0] = 0;
+    coefficients->values[1] = 0;
     coefficients->values[2] = 1.0;
     coefficients->values[3] = 0;
 
