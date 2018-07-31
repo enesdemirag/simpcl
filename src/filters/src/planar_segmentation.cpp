@@ -17,7 +17,7 @@ ros::Publisher pub;
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
-    // Create point cloud objects for cleaned_cloud and segmented_cloud
+    // Create point cloud object for segmented_cloud
     pcl::PointCloud<pcl::PointXYZ> segmented_cloud;
     pcl::fromROSMsg(*cloud_msg, segmented_cloud);
 
