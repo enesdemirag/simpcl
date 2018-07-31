@@ -3,6 +3,7 @@
 
 // Import dependencies
 #include <ros/ros.h>
+#include <string>
 #include <sensor_msgs/PointCloud2.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/point_cloud.h>
@@ -13,6 +14,8 @@
 
 // Definitions
 ros::Publisher pub;
+std::string subscribed_topic = "/cloud_cleaned";
+std::string published_topic = "planar_segmentation_result";
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -46,10 +49,10 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   // Create Subscriber and listen /cloud_cleaned topic
-  ros::Subscriber sub = n.subscribe("/cloud_cleaned", 1, cloud_cb);
+  ros::Subscriber sub = n.subscribe(subscribed_topic, 1, cloud_cb);
 
   // Create Publisher
-  pub = n.advertise<pcl_msgs::ModelCoefficients>("planar_segmentation_result", 1);
+  pub = n.advertise<pcl_msgs::ModelCoefficients>(published_topic, 1);
 
   // Spin
   ros::spin();

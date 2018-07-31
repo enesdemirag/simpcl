@@ -3,6 +3,7 @@
 
 // Import dependencies
 #include <ros/ros.h>
+#include <string>
 #include <iostream>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
@@ -13,6 +14,8 @@
 
 // Definitions
 ros::Publisher pub;
+std::string subscribed_topic = "/cloud_downsampled";
+std::string published_topic = "cloud_passed";
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -47,10 +50,10 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     // Create Subscriber and listen /cloud_downsampled topic
-    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>("/cloud_downsampled", 1, cloud_cb);
+    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<sensor_msgs::PointCloud2>("cloud_passed", 1);
+    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 1);
 
     // Spin
     ros::spin();
