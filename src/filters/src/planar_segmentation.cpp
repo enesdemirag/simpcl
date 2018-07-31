@@ -10,11 +10,9 @@
 #include <pcl/sample_consensus/model_types.h>
 #include <pcl/sample_consensus/method_types.h>
 #include <pcl/segmentation/sac_segmentation.h>
-#include <pcl/filters/extract_indices.h>
 
 // Definitions
-ros::Publisher pub_coefficients;
-ros::Publisher pub_extracted;
+ros::Publisher pub;
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -22,12 +20,6 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Create point cloud object for segmented_cloud
     pcl::PointCloud<pcl::PointXYZ> segmented_cloud;
     pcl::fromROSMsg(*cloud_msg, segmented_cloud);
-
-    pcl::PCLPointCloud2* to_extract = new pcl::PCLPointCloud2;
-    pcl::PCLPointCloud2ConstPtr cloudPtr(to_extract);
-
-    // Create point cloud object for extracted_cloud
-    pcl::PointCloud<pcl::PointXYZ> extracted_cloud;
 
     // Perform the Segmentation
     pcl::ModelCoefficients coefficients;
@@ -43,16 +35,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Publish the model coefficients
     pcl_msgs::ModelCoefficients ros_coefficients;
     pcl_conversions::fromPCL(coefficients, ros_coefficients);
-    pub_coefficients.publish(ros_coefficients);
-
-    // Perform Extraction
-    pcl::ExtractIndices<pcl::PointXYZ> extract;
-    extract.setInputCloud(cloudPtr);
-    extract.setIndices(inliers);
-    extract.setNegative(false);
-    extract.filter(extracted_cloud);
-
-    pub_extracted.publish(extracted_cloud); // Publish extracted_cloud to the /cloud_extracted topic
+    pub.publish(ros_coefficients);
 }
 
 // main
