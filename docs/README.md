@@ -9,3 +9,5 @@
 * **Modeling the World Around Us** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/MappingOverview.pdf)*
 
 * **Pairwise, Rigid Registration The ICP Algorithm and Its Variants** - *[Presentation](Pairwise-RigidRegistration.pdf)*
+
+* **Point Cloud Segmentation and Classification Algorithms** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PointCloudSegmentationAndClassificationAlgorithms.pdf)*
