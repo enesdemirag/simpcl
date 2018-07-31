@@ -35,3 +35,8 @@ target_link_libraries(statistical_removal ${catkin_LIBRARIES})
 add_executable (planar_segmentation src/planar_segmentation.cpp)
 target_link_libraries (planar_segmentation ${PCL_LIBRARIES})
 target_link_libraries(planar_segmentation ${catkin_LIBRARIES})
+
+# Model Projection Node
+add_executable (model_projection src/model_projection.cpp)
+target_link_libraries (model_projection ${PCL_LIBRARIES})
+target_link_libraries(model_projection ${catkin_LIBRARIES})
