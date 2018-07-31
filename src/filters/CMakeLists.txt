@@ -32,6 +32,6 @@ target_link_libraries (statistical_removal ${PCL_LIBRARIES})
 target_link_libraries(statistical_removal ${catkin_LIBRARIES})
 
 # Planar Segmentation Node
-add_executable (segmentation src/segmentation.cpp)
-target_link_libraries (segmentation ${PCL_LIBRARIES})
-target_link_libraries(segmentation ${catkin_LIBRARIES})
+add_executable (planar_segmentation src/planar_segmentation.cpp)
+target_link_libraries (planar_segmentation ${PCL_LIBRARIES})
+target_link_libraries(planar_segmentation ${catkin_LIBRARIES})
