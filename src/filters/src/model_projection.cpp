@@ -34,11 +34,11 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     coefficients->values[3] = 0;
 
     // Perform Projection on a plane model
-    pcl::ProjectInliers<pcl::PointXYZ> proj;
+    pcl::ProjectInliers<pcl::PCLPointCloud2> proj;
     proj.setModelType (pcl::SACMODEL_PLANE); // Set model to plane
-    proj.setInputCloud(cloudPtr); / cleaned_cloud to the filter
+    proj.setInputCloud(cloudPtr); // cleaned_cloud to the filter
     proj.setModelCoefficients(coefficients);
-    proj.filter(*projected_cloud); // Store output data in projected_cloud
+    proj.filter(projected_cloud); // Store output data in projected_cloud
 
     // Convert to ROS data type
     sensor_msgs::PointCloud2 output_cloud;
