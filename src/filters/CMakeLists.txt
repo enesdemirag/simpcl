@@ -30,3 +30,8 @@ target_link_libraries(passthrough_filter ${catkin_LIBRARIES})
 add_executable (statistical_removal src/statistical_removal.cpp)
 target_link_libraries (statistical_removal ${PCL_LIBRARIES})
 target_link_libraries(statistical_removal ${catkin_LIBRARIES})
+
+# Planar Segmentation Node
+add_executable (segmentation src/segmentation.cpp)
+target_link_libraries (segmentation ${PCL_LIBRARIES})
+target_link_libraries(segmentation ${catkin_LIBRARIES})
