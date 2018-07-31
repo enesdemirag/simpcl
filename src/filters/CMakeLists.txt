@@ -31,6 +31,11 @@ add_executable (statistical_removal src/statistical_removal.cpp)
 target_link_libraries (statistical_removal ${PCL_LIBRARIES})
 target_link_libraries(statistical_removal ${catkin_LIBRARIES})
 
+# Radius Outlier Removal Filter Node
+add_executable (radius_removal src/statistical_removal.cpp)
+target_link_libraries (radius_removal ${PCL_LIBRARIES})
+target_link_libraries(radius_removal ${catkin_LIBRARIES})
+
 # Planar Segmentation Node
 add_executable (planar_segmentation src/planar_segmentation.cpp)
 target_link_libraries (planar_segmentation ${PCL_LIBRARIES})
