@@ -17,7 +17,7 @@ ros::Publisher pub;
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
-    //Create point cloud object for raw and downsampled_cloud
+    // Create point cloud objects for raw and downsampled_cloud
     pcl::PCLPointCloud2* raw_cloud = new pcl::PCLPointCloud2;
     pcl::PCLPointCloud2ConstPtr cloudPtr(raw_cloud);
     pcl::PCLPointCloud2 downsampled_cloud;

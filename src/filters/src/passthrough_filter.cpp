@@ -17,7 +17,7 @@ ros::Publisher pub;
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
-    //Create point cloud object for downsampled_cloud and passed_cloud
+    //Create point cloud objects for downsampled_cloud and passed_cloud
     pcl::PCLPointCloud2* downsampled_cloud = new pcl::PCLPointCloud2;
     pcl::PCLPointCloud2ConstPtr cloudPtr(downsampled_cloud);
     pcl::PCLPointCloud2 passed_cloud;
