@@ -2,7 +2,7 @@
 <package format="2">
   <name>filters</name>
   <version>1.0.0</version>
-  <description>The filters package for zed camera ROS wrapper</description>
+  <description>The filters package for zed camera</description>
 
   <maintainer email="demirag16@itu.edu.tr">Enes Demirag</maintainer>
   <license>MIT</license>
