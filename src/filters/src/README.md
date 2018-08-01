@@ -8,3 +8,5 @@
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/otopark_passthrough.png "Voxel Grid Filter")
 ### Removing noise with "Statistical Outlier Removal Filter"
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/otopark_statistical.png "Statistical Outlier Removal Filter")
+### Graph
+[alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/rosgraph.png "Computation Graph from rqt_graph")
