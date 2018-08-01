@@ -14,8 +14,10 @@
 
 // Definitions
 ros::Publisher pub;
-std::string subscribed_topic = "/cloud_cleaned";
-std::string published_topic = "planar_segmentation_result";
+std::string subscribed_topic;
+std::string published_topic;
+bool optimizeCoefficients;
+double distanceThreshold;
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -28,10 +30,10 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::ModelCoefficients coefficients;
     pcl::PointIndices inliers;
     pcl::SACSegmentation<pcl::PointXYZ> seg; // Create the segmentation object
-    seg.setOptimizeCoefficients(true);
+    seg.setOptimizeCoefficients(optimizeCoefficients);
     seg.setModelType(pcl::SACMODEL_PLANE);
     seg.setMethodType(pcl::SAC_RANSAC); // Robust Estimator http://en.wikipedia.org/wiki/RANSAC
-    seg.setDistanceThreshold(0.01); // Determine how close a point must be to the model in order to be considered an inlier
+    seg.setDistanceThreshold(distanceThreshold); // Determine how close a point must be to the model in order to be considered an inlier
     seg.setInputCloud(segmented_cloud.makeShared());
     seg.segment(inliers, coefficients);
 
@@ -47,6 +49,13 @@ int main(int argc, char **argv)
   // Initialize ROS
   ros::init(argc, argv, "planar_segmentation");
   ros::NodeHandle n;
+
+  // Load parameters from launch file
+  ros::NodeHandle nh_private("~");
+  nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_cleaned");
+  nh_private.param<std::string>("published_topic", published_topic, "planar_segmentation_result");
+  nh_private.param<bool>("optimizeCoefficients", optimizeCoefficients, true);
+  nh_private.param<double>("distanceThreshold", distanceThreshold, 0.01);
 
   // Create Subscriber and listen /cloud_cleaned topic
   ros::Subscriber sub = n.subscribe(subscribed_topic, 1, cloud_cb);

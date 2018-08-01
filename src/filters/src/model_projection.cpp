@@ -15,8 +15,8 @@
 
 // Definitions
 ros::Publisher pub;
-std::string subscribed_topic = "/cloud_cleaned";
-std::string published_topic = "cloud_projected";
+std::string subscribed_topic;
+std::string published_topic;
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -56,6 +56,11 @@ int main(int argc, char **argv)
     // Initialize ROS
     ros::init(argc, argv, "model_projection");
     ros::NodeHandle n;
+
+    // Load parameters from launch file
+    ros::NodeHandle nh_private("~");
+    nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_cleaned");
+    nh_private.param<std::string>("published_topic", published_topic, "cloud_projected");
 
     // Create Subscriber and listen /cloud_cleaned topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);

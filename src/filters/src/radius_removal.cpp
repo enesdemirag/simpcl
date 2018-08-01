@@ -14,8 +14,10 @@
 
 // Definitions
 ros::Publisher pub;
-std::string subscribed_topic = "/cloud_passed";
-std::string published_topic = "cloud_cleaned";
+std::string subscribed_topic;
+std::string published_topic;
+double radius;
+int minNeighbors;
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -31,8 +33,8 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Perform the Radius Outlier Removal Filter
     pcl::RadiusOutlierRemoval<pcl::PCLPointCloud2> r_filter;
     r_filter.setInputCloud(cloudPtr); // Pass passed_cloud to the filter
-    r_filter.setRadiusSearch(0.5); // Set radius to 0.5m
-    r_filter.setMinNeighborsInRadius(10); // Set minimum neighbor number to 10
+    r_filter.setRadiusSearch(radius); // Set radius
+    r_filter.setMinNeighborsInRadius(minNeighbors); // Set minimum neighbor number
     r_filter.filter(cleaned_cloud); // Store output data in cleaned_cloud
 
     // Convert to ROS data type
@@ -48,6 +50,13 @@ int main(int argc, char **argv)
     // Initialize ROS
     ros::init(argc, argv, "radius_removal");
     ros::NodeHandle n;
+
+    // Load parameters from launch file
+    ros::NodeHandle nh_private("~");
+    nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_passed");
+    nh_private.param<std::string>("published_topic", published_topic, "cloud_cleaned");
+    nh_private.param<double>("radius", radius, 0.5);
+    nh_private.param<int>("minNeighbors", minNeighbors, 10);
 
     // Create Subscriber and listen /cloud_passed topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);

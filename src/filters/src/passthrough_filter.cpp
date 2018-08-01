@@ -14,8 +14,10 @@
 
 // Definitions
 ros::Publisher pub;
-std::string subscribed_topic = "/cloud_downsampled";
-std::string published_topic = "cloud_passed";
+std::string subscribed_topic;
+std::string published_topic;
+std::string field_name;
+double min_value, max_value;
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
@@ -31,8 +33,8 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     // Perform the PassThrough Filter
     pcl::PassThrough<pcl::PCLPointCloud2> p_filter;
     p_filter.setInputCloud(cloudPtr); // Pass downsampled_cloud to the filter
-    p_filter.setFilterFieldName("x"); // Set axis as x
-    p_filter.setFilterLimits(0.5, 18.0); // Set limits 0.5m to 18m
+    p_filter.setFilterFieldName(field_name); // Set axis
+    p_filter.setFilterLimits(min_value, max_value); // Set limits min_value to max_value
     p_filter.filter(passed_cloud); // Store output data in passed_cloud
 
     // Convert to ROS data type
@@ -48,6 +50,14 @@ int main(int argc, char **argv)
     // Initialize ROS
     ros::init(argc, argv, "passthrough_filter");
     ros::NodeHandle n;
+
+    // Load parameters from launch file
+    ros::NodeHandle nh_private("~");
+    nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_downsampled");
+    nh_private.param<std::string>("published_topic", published_topic, "cloud_passed");
+    nh_private.param<std::string>("field_name", field_name, "x");
+    nh_private.param<double>("min_value", min_value, 0.5);
+    nh_private.param<double>("max_value", max_value, 18.0);
 
     // Create Subscriber and listen /cloud_downsampled topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
