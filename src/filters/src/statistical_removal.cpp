@@ -53,8 +53,8 @@ int main(int argc, char **argv)
 
     // Load parameters from launch file
     ros::NodeHandle nh_private("~");
-    nh_private.param<string>("subscribed_topic", subscribed_topic, "/cloud_passed");
-    nh_private.param<string>("published_topic", published_topic, "cloud_cleaned");
+    nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_passed");
+    nh_private.param<std::string>("published_topic", published_topic, "cloud_cleaned");
     nh_private.param<int>("meanK", meanK, 75);
     nh_private.param<double>("mulThresh", mulThresh, 1.25);
 
