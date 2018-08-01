@@ -1,0 +1,6 @@
+<launch>
+    <node name="model_projection" pkg="filters" type="model_projection" output="screen">
+        <param name="subscribed_topic" type="string" value="/cloud_cleaned"/>
+        <param name="published_topic" type="string" value="cloud_projected"/>
+    </node>
+</launch>
