@@ -22,26 +22,31 @@ target_link_libraries(voxel_filter ${PCL_LIBRARIES})
 target_link_libraries(voxel_filter ${catkin_LIBRARIES})
 
 # PassThrough Filter Node
-add_executable (passthrough_filter src/passthrough_filter.cpp)
-target_link_libraries (passthrough_filter ${PCL_LIBRARIES})
+add_executable(passthrough_filter src/passthrough_filter.cpp)
+target_link_libraries(passthrough_filter ${PCL_LIBRARIES})
 target_link_libraries(passthrough_filter ${catkin_LIBRARIES})
 
 # Statistical Outlier Removal Filter Node
-add_executable (statistical_removal src/statistical_removal.cpp)
-target_link_libraries (statistical_removal ${PCL_LIBRARIES})
+add_executable(statistical_removal src/statistical_removal.cpp)
+target_link_libraries(statistical_removal ${PCL_LIBRARIES})
 target_link_libraries(statistical_removal ${catkin_LIBRARIES})
 
 # Radius Outlier Removal Filter Node
-add_executable (radius_removal src/statistical_removal.cpp)
-target_link_libraries (radius_removal ${PCL_LIBRARIES})
+add_executable(radius_removal src/statistical_removal.cpp)
+target_link_libraries(radius_removal ${PCL_LIBRARIES})
 target_link_libraries(radius_removal ${catkin_LIBRARIES})
 
 # Planar Segmentation Node
-add_executable (planar_segmentation src/planar_segmentation.cpp)
-target_link_libraries (planar_segmentation ${PCL_LIBRARIES})
+add_executable(planar_segmentation src/planar_segmentation.cpp)
+target_link_libraries(planar_segmentation ${PCL_LIBRARIES})
 target_link_libraries(planar_segmentation ${catkin_LIBRARIES})
 
 # Model Projection Node
-add_executable (model_projection src/model_projection.cpp)
-target_link_libraries (model_projection ${PCL_LIBRARIES})
+add_executable(model_projection src/model_projection.cpp)
+target_link_libraries(model_projection ${PCL_LIBRARIES})
 target_link_libraries(model_projection ${catkin_LIBRARIES})
+
+# Multiple Filter Node
+add_executable(multi_filter src/multi_filter.cpp)
+target_link_libraries(multi_filter ${PCL_LIBRARIES})
+target_link_libraries(multi_filter ${catkin_LIBRARIES})
