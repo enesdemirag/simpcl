@@ -1,5 +1,6 @@
 // Voxel Grid, PassThrough, and Statistical Outlier Removal filters applied respectively
 // to the raw point cloud coming from zed camera, and filtered point cloud published
+// TODO: Need to find more efficient solution to conversion problem.
 
 // Import dependencies
 #include <ros/ros.h>
@@ -33,39 +34,49 @@ double mulThresh; // Statistical Outlier Removal Filter parameters
 // callback function
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
-    // Create point cloud objects
+    // Create point cloud and message objects
     pcl::PCLPointCloud2* raw_cloud = new pcl::PCLPointCloud2;
-    pcl::PCLPointCloud2ConstPtr cloudPtr(raw_cloud);
-    pcl::PCLPointCloud2 filtered_cloud;
+    pcl::PCLPointCloud2ConstPtr cloudPtr1(raw_cloud);
+    pcl::PCLPointCloud2 first_cloud;
+    pcl::PCLPointCloud2 second_cloud;
+    pcl::PCLPointCloud2 third_cloud;
+    sensor_msgs::PointCloud2 carrier;
 
-    // Convert to PCL data type
-    pcl_conversions::toPCL(*cloud_msg, *raw_cloud);
+    pcl_conversions::toPCL(*cloud_msg, *raw_cloud); // Convert to PCL data type
 
     // Perform the VoxelGrid Filter
     pcl::VoxelGrid<pcl::PCLPointCloud2> v_filter;
-    v_filter.setInputCloud(cloudPtr); // Pass raw_cloud to the filter
+    v_filter.setInputCloud(cloudPtr1); // Pass raw_cloud to the filter
     v_filter.setLeafSize(leaf_size_x, leaf_size_y, leaf_size_z); // Set leaf size
-    v_filter.filter(filtered_cloud); // Store output data in filtered_cloud
+    v_filter.filter(first_cloud); // Store output data in first_cloud
+
+    pcl_conversions::moveFromPCL(first_cloud, carrier); // Convert to ROS data type
+    pcl::PCLPointCloud2* voxel_cloud = new pcl::PCLPointCloud2;
+    pcl::PCLPointCloud2ConstPtr cloudPtr2(voxel_cloud);
+    pcl_conversions::toPCL(carrier, *voxel_cloud); // Convert to PCL data type
 
     // Perform the PassThrough Filter
     pcl::PassThrough<pcl::PCLPointCloud2> p_filter;
-    p_filter.setInputCloud(filtered_cloud); // Pass filtered_cloud to the filter
+    p_filter.setInputCloud(cloudPtr2); // Pass filtered_cloud to the filter
     p_filter.setFilterFieldName(field_name); // Set axis
     p_filter.setFilterLimits(min_value, max_value); // Set limits min_value to max_value
-    p_filter.filter(filtered_cloud); // Restore output data in filtered_cloud
+    p_filter.filter(second_cloud); // Restore output data in second_cloud
+
+    pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
+    pcl::PCLPointCloud2* pass_cloud = new pcl::PCLPointCloud2;
+    pcl::PCLPointCloud2ConstPtr cloudPtr3(pass_cloud);
+    pcl_conversions::toPCL(carrier, *pass_cloud); // Convert to PCL data type
 
     // Perform the Statistical Outlier Removal Filter
     pcl::StatisticalOutlierRemoval<pcl::PCLPointCloud2> s_filter;
-    s_filter.setInputCloud(filtered_cloud); // Pass filtered_cloud to the filter
+    s_filter.setInputCloud(cloudPtr3); // Pass filtered_cloud to the filter
     s_filter.setMeanK(meanK); // Set the number of neighbors to analyze for each point
     s_filter.setStddevMulThresh(mulThresh); // Set standard deviation multiplier
-    s_filter.filter(filtered_cloud); // Restore output data in filtered_cloud
+    s_filter.filter(third_cloud); // Restore output data in filtered_cloud
 
-    // Convert to ROS data type
-    sensor_msgs::PointCloud2 output_cloud;
-    pcl_conversions::moveFromPCL(filtered_cloud, output_cloud);
+    pcl_conversions::moveFromPCL(third_cloud, carrier); // Convert to ROS data type
 
-    pub.publish(output_cloud); // Publish filtered_cloud to the topic
+    pub.publish(carrier); // Publish filtered_cloud to the topic
 }
 
 // main function
