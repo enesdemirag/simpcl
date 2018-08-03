@@ -1,0 +1,17 @@
+<launch>
+    <node name="filter" pkg="filters" type="filter" output="screen">
+        <param name="subscribed_topic" type="string" value="/point_cloud/cloud_registered"/>
+        <param name="published_topic" type="string" value="cloud_filtered"/>
+        # Voxel Grid Filter parameters
+        <param name="leaf_size_x" type="double" value="0.05"/> # Set leaf size on x axis
+        <param name="leaf_size_y" type="double" value="0.05"/> # Set leaf size on y axis
+        <param name="leaf_size_z" type="double" value="0.15"/> # Set leaf size on z axis
+        # PassThrough Filter parameters
+        <param name="field_name" type="string" value="x"/> # Set related axis
+        <param name="min_value" type="double" value="0.5"/> # Set minimum distance
+        <param name="max_value" type="double" value="18.0"/> # Set maximum distance
+        # Statistical Outlier Removal Filter parameters
+        <param name="meanK" type="int" value="75"/> # Set the number of neighbors to analyze for each point
+        <param name="mulThresh" type="double" value="1.25"/> # Set standard deviation multiplier
+    </node>
+</launch>
