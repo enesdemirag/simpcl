@@ -67,7 +67,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: true
+      Enabled: false
       Keep: 100
       Name: Odometry
       Position Tolerance: 0.100000001
@@ -83,7 +83,7 @@ Visualization Manager:
         Value: Arrow
       Topic: /odom
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -180,7 +180,7 @@ Visualization Manager:
       Name: octomap_cubes
       Namespaces:
         {}
-      Queue Size: 100
+      Queue Size: 150
       Value: true
     - Alpha: 0.699999988
       Class: rviz/Map
