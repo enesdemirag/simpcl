@@ -48,7 +48,8 @@ int main(int argc, char **argv)
         // X Y Z
         odom_transform.transform.translation.x=odom_msg.pose.pose.position.x;
         odom_transform.transform.translation.y=odom_msg.pose.pose.position.y;
-        odom_transform.transform.translation.z=odom_msg.pose.pose.position.z;
+        // Shift ground to 0 Camera is about 1.4 meter height up
+        odom_transform.transform.translation.z=odom_msg.pose.pose.position.z + 1.40;
         // Yaw Pitch Roll
         odom_transform.transform.rotation = odom_msg.pose.pose.orientation;
         // Print coordinates
