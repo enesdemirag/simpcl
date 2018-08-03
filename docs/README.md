@@ -11,3 +11,5 @@
 * **Pairwise, Rigid Registration The ICP Algorithm and Its Variants** - *[Presentation](Pairwise-RigidRegistration.pdf)*
 
 * **Point Cloud Segmentation and Classification Algorithms** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PointCloudSegmentationAndClassificationAlgorithms.pdf)*
+
+* **Progressive Morphological Filter for Removing Nonground Measurements** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/ProgressiveMorphologicalFilter.pdf)*
