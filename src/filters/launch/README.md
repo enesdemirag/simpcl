@@ -2,8 +2,8 @@
 
 Parameters can easily be changed without the need to recompile
 
-#### Example
--------
+#### Example Parameter
+
 ``` <param name="parameter_name" type="parameter_type" value="parameter_value"/> ```
 
 #### Install OctoMap
