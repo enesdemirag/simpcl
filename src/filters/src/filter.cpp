@@ -1,6 +1,6 @@
 // Voxel Grid, PassThrough, and Statistical Outlier Removal filters applied respectively
 // to the raw point cloud coming from zed camera, and filtered point cloud published
-// TODO: Need to find more efficient solution to conversion problem.
+// TODO: Converting data types back and forth from PCL to ROS for now. Need to find more efficient solution.
 
 // Import dependencies
 #include <ros/ros.h>
@@ -83,7 +83,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 int main(int argc, char **argv)
 {
     // Initialize ROS
-    ros::init(argc, argv, "multi_filter");
+    ros::init(argc, argv, "filter");
     ros::NodeHandle n;
 
     // Load parameters from launch file

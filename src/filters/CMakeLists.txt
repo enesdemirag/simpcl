@@ -47,6 +47,6 @@ target_link_libraries(model_projection ${PCL_LIBRARIES})
 target_link_libraries(model_projection ${catkin_LIBRARIES})
 
 # Multiple Filter Node
-add_executable(multi_filter src/multi_filter.cpp)
-target_link_libraries(multi_filter ${PCL_LIBRARIES})
-target_link_libraries(multi_filter ${catkin_LIBRARIES})
+add_executable(filter src/filter.cpp)
+target_link_libraries(filter ${PCL_LIBRARIES})
+target_link_libraries(filter ${catkin_LIBRARIES})
