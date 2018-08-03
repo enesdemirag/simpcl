@@ -54,3 +54,7 @@ target_link_libraries(filter ${catkin_LIBRARIES})
 # tf Broadcaster
 add_executable(tf_broadcaster src/tf_broadcaster.cpp)
 target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
+
+# Progressive Morphological Filter
+add_executable(morphological_segmentation src/morphological_segmentation.cpp)
+target_link_libraries(morphological_segmentation ${catkin_LIBRARIES})
