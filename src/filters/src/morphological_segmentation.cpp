@@ -1,5 +1,7 @@
 // Identifying ground returns using "ProgressiveMorphologicalFilter" segmentation
 // http://pointclouds.org/documentation/tutorials/progressive_morphological_filtering.php
+// Could not build because progressive_morphological_filter is not integrated with ROS
+// TODO: Try the progressive_morphological_filter.h in pcl_ros using pcl::PCLPointCloud2 instead of pcl::PointXYZ
 
 // Import Dependencies
 #include <string>
