@@ -1,7 +1,5 @@
 // Identifying ground returns using "ProgressiveMorphologicalFilter" segmentation
 // http://pointclouds.org/documentation/tutorials/progressive_morphological_filtering.php
-// Could not build because progressive_morphological_filter is not integrated with ROS
-// TODO: Try the progressive_morphological_filter.h in pcl_ros using pcl::PCLPointCloud2 instead of pcl::PointXYZ
 
 // Import Dependencies
 #include <string>
@@ -10,6 +8,7 @@
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
+#include <pcl/conversions.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <pcl/filters/extract_indices.h>
@@ -26,34 +25,34 @@ double slope, initialDistance, maxDistance;
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     // Create point cloud objects for raw cloud, filtered cloud, and ground_cloud
-    pcl::PCLPointCloud2* raw_cloud = new pcl::PCLPointCloud2;
-    pcl::PCLPointCloud2ConstPtr cloudPtr(raw_cloud);
-    pcl::PCLPointCloud2 filtered_cloud;
-    pcl::PointIndicesPtr ground_cloud(new pcl::PointIndices);
-
-    // Convert to PCL data type
-    pcl_conversions::toPCL(*cloud_msg, *raw_cloud);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr raw_cloud (new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered (new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointIndicesPtr ground (new pcl::PointIndices);
 
     // Perform the Progressive Morphological Filter
     pcl::ProgressiveMorphologicalFilter<pcl::PointXYZ> pmf;
-    pmf.setInputCloud(cloudPtr); // Pass raw_cloud to the filter
+    pmf.setInputCloud(raw_cloud); // Pass raw_cloud to the filter
     pmf.setMaxWindowSize(maxWindowSize); // Set maximum window size
     pmf.setSlope(slope); // Set slope
     pmf.setInitialDistance(initialDistance); // Set initial distance
     pmf.setMaxDistance(maxDistance); // Set maximum distance
-    pmf.extract(ground_cloud -> indices);
+    pmf.extract(ground -> indices);
 
-    // Perform extraction
+    // Create the filtering object
     pcl::ExtractIndices<pcl::PointXYZ> extract;
-    extract.setInputCloud(cloudPtr); // Pass raw_cloud to the filter
-    extract.setIndices(ground_cloud); // Extract indices from raw_cloud and store in ground_cloud
-    // extract.setNegative(true); If you want to get just ground
-    extract.filter(filtered_cloud); // Store output data in filtered_cloud
+    extract.setInputCloud(raw_cloud);
+    extract.setIndices(ground);
+    extract.setNegative(true);
+    extract.filter(*cloud_filtered);
 
     // Convert to ROS data type
-    sensor_msgs::PointCloud2 output_cloud;
-    pcl_conversions::moveFromPCL(filtered_cloud, output_cloud);
+    pcl::PCLPointCloud2 x_cloud; //  = new pcl::PCLPointCloud2;
 
+    sensor_msgs::PointCloud2 output_cloud;
+
+    pcl::toPCLPointCloud2(*cloud_filtered, x_cloud);
+
+    pcl_conversions::moveFromPCL(x_cloud, output_cloud);
     pub.publish(output_cloud); // Publish filtered_cloud to the /cloud_without_ground topic
 }
 // main
