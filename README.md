@@ -4,7 +4,28 @@
 
 My internship project in Ravinspect. Filtering point cloud data coming from ZED camera.
 
+This project can work properly with all devices which produce point cloud data. (Stereo Cameras, RGB-D Cameras, LiDARs etc.)
+
 Point Cloud Library (PCL) and OctoMap used on ROS platform.
+
+# Installation #
+
+#### Install ROS
+Check out the *[official website](http://wiki.ros.org/kinetic/Installation)*
+
+#### Install Point Cloud Library
+Download the stable release from *[here] (https://github.com/PointCloudLibrary/pcl/releases)* and follow these *[instructions] (http://www.pointclouds.org/documentation/tutorials/compiling_pcl_posix.php)*
+
+#### Install OctoMap
+
+```
+$ sudo apt-get install build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4
+$ sudo apt-get install ros-kinetic-octomap ros-kinetic-octomap-mapping
+$ rosdep install octomap_mapping
+$ rosmake octomap_mapping
+```
+
+* There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/share/octomap_server/launch``` now
 
 # Filtering Results #
 
@@ -30,18 +51,6 @@ Parameters can easily be changed without the need to recompile
 #### Example Parameter
 
 ``` <param name="parameter_name" type="parameter_type" value="parameter_value"/> ```
-
-#### Install OctoMap
-
-```
-$ sudo apt-get install build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4
-$ sudo apt-get install ros-kinetic-octomap ros-kinetic-octomap-mapping
-$ rosdep install octomap_mapping
-$ rosmake octomap_mapping
-```
-
-* There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/share/octomap_server/launch``` now
-
 
 # Documents about Point Cloud Processing #
 
