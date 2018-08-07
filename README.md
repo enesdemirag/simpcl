@@ -1,3 +1,5 @@
+[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
+
 # 3D Point Cloud Processing and Filtering #
 
 My internship project in Ravinspect. Filtering point cloud data coming from ZED camera.
