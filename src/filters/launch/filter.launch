@@ -7,9 +7,12 @@
         <param name="leaf_size_y" type="double" value="0.05"/> # Set leaf size on y axis
         <param name="leaf_size_z" type="double" value="0.15"/> # Set leaf size on z axis
         # PassThrough Filter parameters
-        <param name="field_name" type="string" value="x"/> # Set related axis
-        <param name="min_value" type="double" value="0.5"/> # Set minimum distance
-        <param name="max_value" type="double" value="18.0"/> # Set maximum distance
+        <param name="min_value_x" type="double" value="0.5"/> # Set minimum distance x
+        <param name="max_value_x" type="double" value="18.0"/> # Set maximum distance x
+        <param name="min_value_y" type="double" value="-20.0"/> # Set minimum distance y
+        <param name="max_value_y" type="double" value="20.0"/> # Set maximum distance y
+        <param name="min_value_z" type="double" value="0.3"/> # Set minimum distance z
+        <param name="max_value_z" type="double" value="20.0"/> # Set maximum distance z
         # Statistical Outlier Removal Filter parameters
         <param name="meanK" type="int" value="75"/> # Set the number of neighbors to analyze for each point
         <param name="mulThresh" type="double" value="1.25"/> # Set standard deviation multiplier
