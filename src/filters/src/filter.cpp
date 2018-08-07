@@ -1,6 +1,9 @@
 // Voxel Grid, PassThrough, and Statistical Outlier Removal filters applied respectively
 // to the raw point cloud coming from zed camera, and filtered point cloud published
-// TODO: Converting data types back and forth from PCL to ROS for now. Need to find more efficient solution.
+// http://pointclouds.org/documentation/tutorials/voxel_grid.php
+// http://pointclouds.org/documentation/tutorials/passthrough.php
+// http://pointclouds.org/documentation/tutorials/statistical_outlier.php
+// IDEA: Radius Method can be used instead of Statistical Method
 
 // Import dependencies
 #include <ros/ros.h>
@@ -68,7 +71,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::PCLPointCloud2ConstPtr cloudPtr_X(x_removed_cloud);
     pcl_conversions::toPCL(carrier, *x_removed_cloud); // Convert to PCL data type
 
-    // Perform the PassThrough Filter to the X axis
+    // Perform the PassThrough Filter to the Y axis
     pcl::PassThrough<pcl::PCLPointCloud2> py_filter;
     py_filter.setInputCloud(cloudPtr_X); // Pass filtered_cloud to the filter
     py_filter.setFilterFieldName("y"); // Set axis y
@@ -80,7 +83,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::PCLPointCloud2ConstPtr cloudPtr_Y(y_removed_cloud);
     pcl_conversions::toPCL(carrier, *y_removed_cloud); // Convert to PCL data type
 
-    // Perform the PassThrough Filter to the X axis
+    // Perform the PassThrough Filter to the Z axis
     pcl::PassThrough<pcl::PCLPointCloud2> pz_filter;
     pz_filter.setInputCloud(cloudPtr_Y); // Pass filtered_cloud to the filter
     pz_filter.setFilterFieldName("z"); // Set axis z
@@ -117,15 +120,15 @@ int main(int argc, char **argv)
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/point_cloud/cloud_registered");
     nh_private.param<std::string>("published_topic", published_topic, "cloud_filtered");
     // Voxel Filter Parameters
-    nh_private.param<double>("leaf_size_x", leaf_size_x, 0.05);
+    nh_private.param<double>("leaf_size_x", leaf_size_x, 0.15);
     nh_private.param<double>("leaf_size_y", leaf_size_y, 0.05);
-    nh_private.param<double>("leaf_size_z", leaf_size_z, 0.15);
+    nh_private.param<double>("leaf_size_z", leaf_size_z, 0.05);
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
     nh_private.param<double>("max_value_x", max_value_x, 18.0);
     nh_private.param<double>("min_value_y", min_value_y, 0.0);
     nh_private.param<double>("max_value_y", max_value_y, 20.0);
-    nh_private.param<double>("min_value_z", min_value_z, 0.3);
+    nh_private.param<double>("min_value_z", min_value_z, 0.3); // Remove the ground
     nh_private.param<double>("max_value_z", max_value_z, 20.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 75);
