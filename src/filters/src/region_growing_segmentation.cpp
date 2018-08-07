@@ -1,4 +1,7 @@
-// region Dependencies
+// Color-based Region Growing Segmentation for removing the ground
+// http://pointclouds.org/documentation/tutorials/region_growing_rgb_segmentation.php
+
+// Dependencies
 #include <iostream>
 #include <vector>
 #include <string>
@@ -13,41 +16,47 @@
 #include <pcl/filters/passthrough.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <pcl/filters/extract_indices.h>
-#include <pcl/visualization/cloud_viewer.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/segmentation/region_growing_rgb.h>
-// endregion
 
-// region callback
+// Definitions
+ros::Publisher pub;
+std::string subscribed_topic;
+std::string published_topic;
+
+// callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     pcl::search::Search <pcl::PointXYZRGB>::Ptr tree = boost::shared_ptr<pcl::search::Search<pcl::PointXYZRGB> > (new pcl::search::KdTree<pcl::PointXYZRGB>);
-    pcl::PointCloud <pcl::PointXYZRGB>::Ptr cloud (new pcl::PointCloud <pcl::PointXYZRGB>);
+    pcl::PointCloud <pcl::PointXYZRGB>::Ptr raw_cloud (new pcl::PointCloud <pcl::PointXYZRGB>);
+    pcl::IndicesPtr indices(new std::vector <int>);
 
-    pcl::IndicesPtr indices (new std::vector <int>);
     pcl::PassThrough<pcl::PointXYZRGB> pass;
-    pass.setInputCloud (cloud);
-    pass.setFilterFieldName ("z");
-    pass.setFilterLimits (0.0, 1.0);
-    pass.filter (*indices);
+    pass.setInputCloud(raw_cloud);
+    pass.setFilterFieldName("z");
+    pass.setFilterLimits(-1.0, 1.0);
+    pass.filter(*indices);
 
     pcl::RegionGrowingRGB<pcl::PointXYZRGB> reg;
-    reg.setInputCloud (cloud);
-    reg.setIndices (indices);
-    reg.setSearchMethod (tree);
-    reg.setDistanceThreshold (10);
-    reg.setPointColorThreshold (6);
-    reg.setRegionColorThreshold (5);
-    reg.setMinClusterSize (600);
+    reg.setInputCloud(raw_cloud);
+    reg.setIndices(indices);
+    reg.setSearchMethod(tree);
+    reg.setDistanceThreshold(10);
+    reg.setPointColorThreshold(6);
+    reg.setRegionColorThreshold(5);
+    reg.setMinClusterSize(600);
 
-  std::vector <pcl::PointIndices> clusters;
-  reg.extract (clusters);
+    std::vector <pcl::PointIndices> clusters;
+    reg.extract(clusters);
 
-  pcl::PointCloud <pcl::PointXYZRGB>::Ptr colored_cloud = reg.getColoredCloud ();
+    pcl::PointCloud <pcl::PointXYZRGB>::Ptr colored_cloud = reg.getColoredCloud();
+
+    sensor_msgs::PointCloud2 cloud_out;
+    pcl::toROSMsg(*colored_cloud, cloud_out);
+    pub.publish(cloud_out);
 }
-// endregion
 
-// region main
+// main
 int main(int argc, char **argv)
 {
     // Initialize ROS
@@ -58,11 +67,8 @@ int main(int argc, char **argv)
     ros::NodeHandle nh_private("~");
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_filtered");
     nh_private.param<std::string>("published_topic", published_topic, "cloud_segmented");
-    nh_private.param<double>("leaf_size_x", leaf_size_x, 0.05);
-    nh_private.param<double>("leaf_size_y", leaf_size_y, 0.05);
-    nh_private.param<double>("leaf_size_z", leaf_size_z, 0.15);
 
-    // Create Subscriber and listen /zed/point_cloud/cloud_registered topic
+    // Create Subscriber and listen to subscribed_topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
 
     // Create Publisher
@@ -72,4 +78,3 @@ int main(int argc, char **argv)
     ros::spin();
     return 0;
 }
-// endregion
