@@ -1,11 +1,11 @@
 # 3D Point Cloud Processing and Filtering #
----
+
 My internship project in Ravinspect. Filtering point cloud data coming from ZED camera.
 
 Point Cloud Library (PCL) and OctoMap used on ROS platform.
 
 # Filtering Results #
----
+
 ### Raw Point Cloud
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/otopark_raw.png "Raw Point Cloud Data")
 ### Downsampling with "Voxel Grid Filter"
@@ -22,7 +22,7 @@ Point Cloud Library (PCL) and OctoMap used on ROS platform.
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/filtering_graph.png "from rqt_graph")
 
 # Launch files for filters #
----
+
 Parameters can easily be changed without the need to recompile
 
 #### Example Parameter
@@ -62,9 +62,9 @@ $ rosmake octomap_mapping
 * **Difference of Normals as a Multi-Scale Operator in Unorganized Point Clouds** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/DoNSegmentation.pdf)*
 
 ## Author
----
+
 * **Enes Demirağ** - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)*
 
 ## License
----
+
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
