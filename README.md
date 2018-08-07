@@ -2,11 +2,9 @@
 
 # 3D Point Cloud Processing and Filtering #
 
-My internship project in Ravinspect. Filtering point cloud data coming from ZED camera.
+My internship project in *[Ravinspect](http://www.ravinspect.com)*. Filtering point cloud data coming from ZED camera.
 
-This project can work properly with all devices which produce point cloud data. (Stereo Cameras, RGB-D Cameras, LiDARs etc.)
-
-Point Cloud Library (PCL) and OctoMap used on ROS platform.
+This project can work properly with all devices which produce point cloud data. (Stereo Cameras, RGB-D Cameras, LiDARs etc.) *[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)* and *[OctoMap](https://github.com/OctoMap/octomap_mapping)* used on ROS platform.
 
 # Installation #
 
@@ -14,7 +12,7 @@ Point Cloud Library (PCL) and OctoMap used on ROS platform.
 Check out the *[official website](http://wiki.ros.org/kinetic/Installation)*
 
 #### Install Point Cloud Library
-Download the stable release from *[here] (https://github.com/PointCloudLibrary/pcl/releases)* and follow these *[instructions] (http://www.pointclouds.org/documentation/tutorials/compiling_pcl_posix.php)*
+Download the stable release from *[here](https://github.com/PointCloudLibrary/pcl/releases)* and follow these *[instructions](http://www.pointclouds.org/documentation/tutorials/compiling_pcl_posix.php)*
 
 #### Install OctoMap
 
