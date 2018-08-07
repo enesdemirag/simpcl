@@ -25,8 +25,9 @@ std::string published_topic;
 
 double leaf_size_x, leaf_size_y, leaf_size_z; // Voxel Filter parameters
 
-std::string field_name; // PassThrough Filter parameters
-double min_value, max_value; // PassThrough Filter parameters
+double min_value_x, max_value_x, // PassThrough Filter parameters
+       min_value_y, max_value_y,
+       min_value_z, max_value_z;
 
 int meanK; // Statistical Outlier Removal Filter parameters
 double mulThresh; // Statistical Outlier Removal Filter parameters
@@ -55,12 +56,36 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::PCLPointCloud2ConstPtr cloudPtr2(voxel_cloud);
     pcl_conversions::toPCL(carrier, *voxel_cloud); // Convert to PCL data type
 
-    // Perform the PassThrough Filter
-    pcl::PassThrough<pcl::PCLPointCloud2> p_filter;
-    p_filter.setInputCloud(cloudPtr2); // Pass filtered_cloud to the filter
-    p_filter.setFilterFieldName(field_name); // Set axis
-    p_filter.setFilterLimits(min_value, max_value); // Set limits min_value to max_value
-    p_filter.filter(second_cloud); // Restore output data in second_cloud
+    // Perform the PassThrough Filter to the X axis
+    pcl::PassThrough<pcl::PCLPointCloud2> px_filter;
+    px_filter.setInputCloud(cloudPtr2); // Pass filtered_cloud to the filter
+    px_filter.setFilterFieldName("x"); // Set axis x
+    px_filter.setFilterLimits(min_value_x, max_value_x); // Set limits min_value to max_value
+    px_filter.filter(second_cloud); // Restore output data in second_cloud
+
+    pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
+    pcl::PCLPointCloud2* x_removed_cloud = new pcl::PCLPointCloud2;
+    pcl::PCLPointCloud2ConstPtr cloudPtr_X(x_removed_cloud);
+    pcl_conversions::toPCL(carrier, *x_removed_cloud); // Convert to PCL data type
+
+    // Perform the PassThrough Filter to the X axis
+    pcl::PassThrough<pcl::PCLPointCloud2> py_filter;
+    py_filter.setInputCloud(cloudPtr_X); // Pass filtered_cloud to the filter
+    py_filter.setFilterFieldName("y"); // Set axis y
+    py_filter.setFilterLimits(min_value_y, max_value_y); // Set limits min_value to max_value
+    py_filter.filter(second_cloud); // Restore output data in second_cloud
+
+    pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
+    pcl::PCLPointCloud2* y_removed_cloud = new pcl::PCLPointCloud2;
+    pcl::PCLPointCloud2ConstPtr cloudPtr_Y(y_removed_cloud);
+    pcl_conversions::toPCL(carrier, *y_removed_cloud); // Convert to PCL data type
+
+    // Perform the PassThrough Filter to the X axis
+    pcl::PassThrough<pcl::PCLPointCloud2> pz_filter;
+    pz_filter.setInputCloud(cloudPtr_Y); // Pass filtered_cloud to the filter
+    pz_filter.setFilterFieldName("z"); // Set axis z
+    pz_filter.setFilterLimits(min_value_z, max_value_z); // Set limits min_value to max_value
+    pz_filter.filter(second_cloud); // Restore output data in second_cloud
 
     pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
     pcl::PCLPointCloud2* pass_cloud = new pcl::PCLPointCloud2;
@@ -96,9 +121,12 @@ int main(int argc, char **argv)
     nh_private.param<double>("leaf_size_y", leaf_size_y, 0.05);
     nh_private.param<double>("leaf_size_z", leaf_size_z, 0.15);
     // PassThrough Filter Parameters
-    nh_private.param<std::string>("field_name", field_name, "x");
-    nh_private.param<double>("min_value", min_value, 0.5);
-    nh_private.param<double>("max_value", max_value, 18.0);
+    nh_private.param<double>("min_value_x", min_value_x, 0.5);
+    nh_private.param<double>("max_value_x", max_value_x, 18.0);
+    nh_private.param<double>("min_value_y", min_value_y, 0.0);
+    nh_private.param<double>("max_value_y", max_value_y, 20.0);
+    nh_private.param<double>("min_value_z", min_value_z, 0.3);
+    nh_private.param<double>("max_value_z", max_value_z, 20.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 75);
     nh_private.param<double>("mulThresh", mulThresh, 1.25);
