@@ -70,3 +70,8 @@ $ rosmake octomap_mapping
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+---
+> `Note:` Difference of Normals Based Segmentation (don_segmentation.cpp),
+Progressive Morphological Segmentation (morphological_segmentation.cpp),
+and Planar Segmentation (planar_segmentation.cpp) nodes are not working properly for now.
