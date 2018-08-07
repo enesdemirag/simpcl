@@ -58,3 +58,7 @@ target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
 # Progressive Morphological Filter
 add_executable(morphological_segmentation src/morphological_segmentation.cpp)
 target_link_libraries(morphological_segmentation ${catkin_LIBRARIES})
+
+# Region Growing Segmentation
+add_executable(region_growing_segmentation src/region_growing_segmentation.cpp)
+target_link_libraries(region_growing_segmentation ${catkin_LIBRARIES})
