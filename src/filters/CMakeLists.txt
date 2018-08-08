@@ -62,3 +62,7 @@ target_link_libraries(morphological_segmentation ${catkin_LIBRARIES})
 # Region Growing Segmentation
 add_executable(region_growing_segmentation src/region_growing_segmentation.cpp)
 target_link_libraries(region_growing_segmentation ${catkin_LIBRARIES})
+
+# Difference Of Normals Segmentation
+add_executable(don_segmentation src/don_segmentation.cpp)
+target_link_libraries(don_segmentation ${catkin_LIBRARIES})
