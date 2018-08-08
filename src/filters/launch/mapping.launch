@@ -15,8 +15,8 @@
         <param name="min_value_z" type="double" value="-20.0"/> # Set minimum distance z
         <param name="max_value_z" type="double" value="20.0"/> # Set maximum distance z
         # Statistical Outlier Removal Filter parameters
-        <param name="meanK" type="int" value="75"/> # Set the number of neighbors to analyze for each point
-        <param name="mulThresh" type="double" value="1.25"/> # Set standard deviation multiplier
+        <param name="meanK" type="int" value="64"/> # Set the number of neighbors to analyze for each point
+        <param name="mulThresh" type="double" value="1.5"/> # Set standard deviation multiplier
     </node>
     <node name="tf_broadcaster" pkg="filters" type="tf_broadcaster" output="screen">
         <param name="subscribed_topic" type="string" value="/odom"/>
