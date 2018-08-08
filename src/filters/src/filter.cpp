@@ -120,19 +120,19 @@ int main(int argc, char **argv)
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/point_cloud/cloud_registered");
     nh_private.param<std::string>("published_topic", published_topic, "cloud_filtered");
     // Voxel Filter Parameters
-    nh_private.param<double>("leaf_size_x", leaf_size_x, 0.15);
+    nh_private.param<double>("leaf_size_x", leaf_size_x, 0.05);
     nh_private.param<double>("leaf_size_y", leaf_size_y, 0.05);
     nh_private.param<double>("leaf_size_z", leaf_size_z, 0.05);
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
     nh_private.param<double>("max_value_x", max_value_x, 18.0);
-    nh_private.param<double>("min_value_y", min_value_y, 0.0);
+    nh_private.param<double>("min_value_y", min_value_y, -20.0);
     nh_private.param<double>("max_value_y", max_value_y, 20.0);
-    nh_private.param<double>("min_value_z", min_value_z, 0.3); // Remove the ground
+    nh_private.param<double>("min_value_z", min_value_z, -20.0);
     nh_private.param<double>("max_value_z", max_value_z, 20.0);
     // Statistical Outlier Removal Filter Parameters
-    nh_private.param<int>("meanK", meanK, 75);
-    nh_private.param<double>("mulThresh", mulThresh, 1.25);
+    nh_private.param<int>("meanK", meanK, 64);
+    nh_private.param<double>("mulThresh", mulThresh, 1.5);
 
     // Create Subscriber and listen subscribed_topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
