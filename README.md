@@ -36,7 +36,7 @@ $ rosmake octomap_mapping
 ### Removing noise with "Statistical Outlier Removal Filter"
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/otopark_statistical.png "Statistical Outlier Removal Filter")
 ### 3D mapping with OctoMap
-![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/octomap_otopark.png "Mapping using Odometry and Point Cloud data simultaneously")
+![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/octomap_otopark.gif "Mapping using Odometry and Point Cloud data simultaneously")
 ### Mapping Graph
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/mapping_graph.png "from rqt_graph")
 ### Filtering Graph
@@ -72,6 +72,7 @@ Parameters can easily be changed without the need to recompile
 
 * **Plane Detection and Segmentation For DARPA Robotics Challange** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PlaneDetectionandSegmentation.pdf)*
 
+* **Automated Extraction of Urban Road Facilities** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/StudiesonGroundRemoval.pdf)*
 
 ## Author
 
@@ -81,6 +82,12 @@ Parameters can easily be changed without the need to recompile
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
+# Current Work #
+Removing ground using segmentation methods
+
+#### Planar Segmentation
+> red point cloud -> removed parts
+![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "red -> removed parts")
 ---
 > `Note:` Difference of Normals Based Segmentation (don_segmentation.cpp)
 and Progressive Morphological Segmentation (morphological_segmentation.cpp) nodes are not working properly for now.
