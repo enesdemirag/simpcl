@@ -66,3 +66,7 @@ target_link_libraries(region_growing_segmentation ${catkin_LIBRARIES})
 # Difference Of Normals Segmentation
 add_executable(don_segmentation src/don_segmentation.cpp)
 target_link_libraries(don_segmentation ${catkin_LIBRARIES})
+
+# Moving Least Squares Resampling
+add_executable(resampling src/resampling.cpp)
+target_link_libraries(resampling ${catkin_LIBRARIES})
