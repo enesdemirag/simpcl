@@ -1,6 +1,6 @@
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
-# 3D Point Cloud Filtering and Mapping using Stereo Camera #
+# Point Cloud Filtering #
 
 My internship project in *[Ravinspect](http://www.ravinspect.com)*. Filtering point cloud data coming from ZED camera in real-time.
 
@@ -81,9 +81,10 @@ Parameters can easily be changed without the need to recompile
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/logo.png "ravinspect.com")
 
-# Current Work #
-Removing ground using segmentation methods
+### Work in progress
+* Removing ground using segmentation methods
 
 #### Planar Segmentation
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "red -> removed parts")
