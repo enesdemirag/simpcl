@@ -1,6 +1,6 @@
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
-# Point Cloud Filtering # <img align="right" src="https://github.com/enesdemirag/zed_filtering/raw/master/images/logo.png">
+# Point Cloud Filtering <img align="right" src="https://github.com/enesdemirag/zed_filtering/raw/master/images/logo.png">
 
 My internship project in *[Ravinspect](http://www.ravinspect.com)*. Filtering point cloud data coming from ZED camera in real-time.
 
@@ -23,7 +23,7 @@ $ rosdep install octomap_mapping
 $ rosmake octomap_mapping
 ```
 
-* There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/share/octomap_server/launch``` now
+There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/share/octomap_server/launch``` now
 
 # Filtering Results #
 
@@ -41,9 +41,10 @@ $ rosmake octomap_mapping
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/mapping_graph.png "from rqt_graph")
 ### Filtering Graph
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/filtering_graph.png "from rqt_graph")
-
+---
 # Launch files for filters #
 
+Launch files are under the *[src/filter/launch directory](https://github.com/enesdemirag/zed_filtering/tree/master/src/filters/launch)*
 Parameters can easily be changed without the need to recompile
 
 #### Example Parameter
