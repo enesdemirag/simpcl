@@ -1,8 +1,8 @@
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
-# 3D Point Cloud Processing and Filtering #
+# 3D Point Cloud Filtering and Mapping using Stereo Camera #
 
-My internship project in *[Ravinspect](http://www.ravinspect.com)*. Filtering point cloud data coming from ZED camera.
+My internship project in *[Ravinspect](http://www.ravinspect.com)*. Filtering point cloud data coming from ZED camera in real-time.
 
 This project can work properly with all devices which produce point cloud data. (Stereo Cameras, RGB-D Cameras, LiDARs etc.) *[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)* and *[OctoMap](https://github.com/OctoMap/octomap_mapping)* used on ROS platform.
 
@@ -76,7 +76,7 @@ Parameters can easily be changed without the need to recompile
 
 ## Author
 
-* **Enes Demirağ** - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)*
+* **Enes Demirağ** <demirag16@itu.edu.tr> - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)*
 
 ## License
 
@@ -86,7 +86,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 Removing ground using segmentation methods
 
 #### Planar Segmentation
-> red point cloud -> removed parts
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "red -> removed parts")
 ---
 > `Note:` Difference of Normals Based Segmentation (don_segmentation.cpp)
