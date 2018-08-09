@@ -59,7 +59,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     seg1.setOptimizeCoefficients(true);
     seg1.setModelType(pcl::SACMODEL_PLANE);
     seg1.setMethodType(pcl::SAC_RANSAC);
-    seg1.setDistanceThreshold(0.1);
+    seg1.setDistanceThreshold(0.8);
     seg1.setInputCloud(xyzCloudPtr);
     seg1.segment(*inliers, *coefficients);
 
