@@ -42,10 +42,22 @@ There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/shar
 ### Filtering Graph
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/filtering_graph.png "from rqt_graph")
 ---
-# Launch files for filters #
+# How to Use #
 
+Get this repository as a catkin workspace
+```
+$ git clone https://github.com/enesdemirag/zed_filtering.git catkin_ws
+```
+Build package
+```
+$ cd catkin_ws
+$ catkin build
+```
 Launch files are under the *[src/filter/launch directory](https://github.com/enesdemirag/zed_filtering/tree/master/src/filters/launch)*
-Parameters can easily be changed without the need to recompile
+Parameters can easily be changed without the need to recompile.
+```
+$ roslaunch filters mapping.launch
+```
 
 #### Example Parameter
 
