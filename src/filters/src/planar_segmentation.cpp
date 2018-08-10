@@ -1,5 +1,6 @@
 // Planar Segmentation
 // http://www.pointclouds.org/documentation/tutorials/planar_segmentation.php
+// FIXME: Removing wrong parts
 
 // Import dependencies
 #include <ros/ros.h>
@@ -56,10 +57,11 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 
     // Create the segmentation object
     pcl::SACSegmentation<pcl::PointXYZRGB> seg1;
-    seg1.setOptimizeCoefficients(true);
+    seg1.setOptimizeCoefficients(optimizeCoefficients);
     seg1.setModelType(pcl::SACMODEL_PLANE);
     seg1.setMethodType(pcl::SAC_RANSAC);
-    seg1.setDistanceThreshold(0.8);
+    seg1.setMaxIterations(100);
+    seg1.setDistanceThreshold(distanceThreshold);
     seg1.setInputCloud(xyzCloudPtr);
     seg1.segment(*inliers, *coefficients);
 
@@ -86,13 +88,13 @@ int main(int argc, char **argv)
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_filtered");
     nh_private.param<std::string>("published_topic", published_topic, "cloud_segmented");
     nh_private.param<bool>("optimizeCoefficients", optimizeCoefficients, true);
-    nh_private.param<double>("distanceThreshold", distanceThreshold, 0.01);
+    nh_private.param<double>("distanceThreshold", distanceThreshold, 1.0);
 
     // Create Subscriber and listen subscribed_topic
-    ros::Subscriber sub = n.subscribe(subscribed_topic, 1, cloud_cb);
+    ros::Subscriber sub = n.subscribe(subscribed_topic, 100, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<pcl::PointCloud<pcl::PointXYZRGB> >(published_topic, 1);
+    pub = n.advertise<pcl::PointCloud<pcl::PointXYZRGB> >(published_topic, 100);
 
     // Spin
     ros::spin();
