@@ -1,3 +1,7 @@
+// Difference of Normals Based Segmentation
+// http://pointclouds.org/documentation/tutorials/don_segmentation.php
+// NOTE: Too slow and parameters are wrong
+
 #include <string>
 #include <ros/ros.h>
 #include <iostream>
@@ -31,9 +35,9 @@ ros::Publisher pub;
 std::string subscribed_topic;
 std::string published_topic;
 double scale1 = 0.2;
-double scale2 = 2.0;
-double threshold = 0.25;
-double segradius = 0.2;
+double scale2 = 0.5;
+double threshold = 0.8;
+double segradius = 0.3;
 bool approx = false;
 double decimation = 100;
 
@@ -121,37 +125,6 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     std::cout << "Filtered Pointcloud: " << doncloud->points.size () << " data points." << std::endl;
 
     pub.publish(*doncloud);
-
-    // Filter by magnitude
-    cout << "Clustering using EuclideanClusterExtraction with tolerance <= " << segradius << "..." << endl;
-
-    pcl::search::KdTree<PointNormal>::Ptr segtree (new pcl::search::KdTree<PointNormal>);
-    segtree->setInputCloud (doncloud);
-
-    std::vector<pcl::PointIndices> cluster_indices;
-    pcl::EuclideanClusterExtraction<PointNormal> ec;
-
-    ec.setClusterTolerance (segradius);
-    ec.setMinClusterSize (50);
-    ec.setMaxClusterSize (100000);
-    ec.setSearchMethod (segtree);
-    ec.setInputCloud (doncloud);
-    ec.extract (cluster_indices);
-
-    int j = 0;
-    for (std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin (); it != cluster_indices.end (); ++it, j++)
-    {
-        pcl::PointCloud<PointNormal>::Ptr cloud_cluster_don (new pcl::PointCloud<PointNormal>);
-        for (std::vector<int>::const_iterator pit = it->indices.begin (); pit != it->indices.end (); ++pit)
-        {
-            cloud_cluster_don->points.push_back (doncloud->points[*pit]);
-        }
-
-        cloud_cluster_don->width = int (cloud_cluster_don->points.size ());
-        cloud_cluster_don->height = 1;
-        cloud_cluster_don->is_dense = true;
-        //pub.publish(*cloud_cluster_don);
-    }
 }
 
 int main(int argc, char **argv)
