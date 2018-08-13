@@ -3,7 +3,6 @@
 // http://pointclouds.org/documentation/tutorials/voxel_grid.php
 // http://pointclouds.org/documentation/tutorials/passthrough.php
 // http://pointclouds.org/documentation/tutorials/statistical_outlier.php
-// IDEA: Radius Method can be used instead of Statistical Method
 
 // Import dependencies
 #include <ros/ros.h>
@@ -126,10 +125,10 @@ int main(int argc, char **argv)
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
     nh_private.param<double>("max_value_x", max_value_x, 18.0);
-    nh_private.param<double>("min_value_y", min_value_y, -20.0);
-    nh_private.param<double>("max_value_y", max_value_y, 20.0);
-    nh_private.param<double>("min_value_z", min_value_z, -20.0);
-    nh_private.param<double>("max_value_z", max_value_z, 20.0);
+    nh_private.param<double>("min_value_y", min_value_y, -10.0);
+    nh_private.param<double>("max_value_y", max_value_y, 10.0);
+    nh_private.param<double>("min_value_z", min_value_z, -10.0);
+    nh_private.param<double>("max_value_z", max_value_z, 10.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 64);
     nh_private.param<double>("mulThresh", mulThresh, 1.5);
