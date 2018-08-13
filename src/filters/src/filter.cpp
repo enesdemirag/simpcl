@@ -38,8 +38,9 @@ double mulThresh; // Statistical Outlier Removal Filter parameters
 
 void altitude_cb(const double msg)
 {
-    min_value_z = msg;
+    min_value_z = (msg * -1) + 0.2; // 20cm from ground will be deleted 
 }
+
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     // Create point cloud and message objects
@@ -87,7 +88,6 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::PCLPointCloud2ConstPtr cloudPtr_Y(y_removed_cloud);
     pcl_conversions::toPCL(carrier, *y_removed_cloud); // Convert to PCL data type
 
-
     // Perform the PassThrough Filter to the Z axis
     pcl::PassThrough<pcl::PCLPointCloud2> pz_filter;
     pz_filter.setInputCloud(cloudPtr_Y); // Pass filtered_cloud to the filter
@@ -133,7 +133,6 @@ int main(int argc, char **argv)
     nh_private.param<double>("max_value_x", max_value_x, 18.0);
     nh_private.param<double>("min_value_y", min_value_y, -10.0);
     nh_private.param<double>("max_value_y", max_value_y, 10.0);
-    // nh_private.param<double>("min_value_z", min_value_z, -10.0);
     nh_private.param<double>("max_value_z", max_value_z, 10.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 64);
