@@ -1,6 +1,5 @@
 // Planar Segmentation
 // http://www.pointclouds.org/documentation/tutorials/planar_segmentation.php
-// FIXME: Removing wrong parts
 
 // Import dependencies
 #include <ros/ros.h>
@@ -69,7 +68,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::ExtractIndices<pcl::PointXYZRGB> extract;
     extract.setInputCloud(xyzCloudPtr);
     extract.setIndices(inliers);
-    extract.setNegative(true);
+    extract.setNegative(false);
     extract.filter(*xyzCloudPtrRansacFiltered);
 
     // Publish
