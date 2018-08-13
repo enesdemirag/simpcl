@@ -13,17 +13,11 @@ std::string subscribed_topic;
 std::string base_frame;
 std::string child_frame;
 int loop_rate;
-double altitude;
 
 // callback
 void callback(const nav_msgs::OdometryConstPtr& msg)
 {
     odom_msg = *msg; // Store odometry data in odom_msg
-}
-
-void laserback(const double msg)
-{
-    altitude = msg;
 }
 
 // main
@@ -41,7 +35,6 @@ int main(int argc, char **argv)
 
     // Subscribe
     ros::Subscriber sub = n.subscribe<nav_msgs::Odometry>(subscribed_topic, 10, callback);
-    ros::Subscriber laser = n.subscribe<double>("altitude_tracker", 10, laserback);
     // Create broudcaster and transformer objects
     tf::TransformBroadcaster odom_broadcaster;
     geometry_msgs::TransformStamped odom_transform;
@@ -54,8 +47,7 @@ int main(int argc, char **argv)
         // X Y Z
         odom_transform.transform.translation.x=odom_msg.pose.pose.position.x;
         odom_transform.transform.translation.y=odom_msg.pose.pose.position.y;
-        // Shift ground to 0, according to the altitude_tracker
-        odom_transform.transform.translation.z=odom_msg.pose.pose.position.z + altitude;
+        odom_transform.transform.translation.z=odom_msg.pose.pose.position.z;
         // Yaw Pitch Roll
         odom_transform.transform.rotation = odom_msg.pose.pose.orientation;
         // Print coordinates
