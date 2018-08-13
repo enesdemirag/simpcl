@@ -1,7 +1,0 @@
-<launch>
-    <node name="altitude_listener" pkg="filters" type="altitude_listener" respawn="false" launch-prefix="" output="screen">
-        <param name="subscribed_topic" type="string" value="/laserscan"/>
-        <param name="published_topic" type="string" value="altitude_tracker"/>
-        <param name="threshold" type="float" value="0.3"/>
-    </node>
-</launch>

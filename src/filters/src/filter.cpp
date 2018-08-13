@@ -34,21 +34,7 @@ double min_value_x, max_value_x, // PassThrough Filter parameters
 int meanK; // Statistical Outlier Removal Filter parameters
 double mulThresh; // Statistical Outlier Removal Filter parameters
 
-// callback functions
-
-void altitude_cb(const double msg)
-{
-    altitude = msg;
-    if(altitude == 0.0)
-    {
-        min_value_z = -20; // Do not remove ground
-    }
-    else
-    {
-        min_value_z = (altitude * -1) + 0.2; // 20cm from ground will be deleted 
-    }
-}
-
+// callback function
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     // Create point cloud and message objects
@@ -139,16 +125,16 @@ int main(int argc, char **argv)
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
     nh_private.param<double>("max_value_x", max_value_x, 18.0);
-    nh_private.param<double>("min_value_y", min_value_y, -10.0);
-    nh_private.param<double>("max_value_y", max_value_y, 10.0);
-    nh_private.param<double>("max_value_z", max_value_z, 10.0);
+    nh_private.param<double>("min_value_y", min_value_y, -20.0);
+    nh_private.param<double>("max_value_y", max_value_y, 20.0);
+    nh_private.param<double>("min_value_z", min_value_z, -20.0);
+    nh_private.param<double>("max_value_z", max_value_z, 20.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 64);
     nh_private.param<double>("mulThresh", mulThresh, 1.5);
 
     // Create Subscriber and listen subscribed_topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
-    ros::Subscriber laser = n.subscribe<double>(altitude_tracker, 1, altitude_cb);
 
     // Create Publisher
     pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 1);
