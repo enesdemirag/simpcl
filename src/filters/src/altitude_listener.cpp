@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     // Create Publisher
     pub = n.advertise<double>(published_topic, 1);
 
-    while(true)
+    while(ros::ok())
     {
         if(abs(altitude1 - altitude0) < threshold))
         {
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
         }
         else
         {
-            while(true)
+            while(ros::ok())
             {
                 if(abs(altitude1 - altitude0 < threshold)
                 {

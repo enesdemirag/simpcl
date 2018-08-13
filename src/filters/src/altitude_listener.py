@@ -14,11 +14,11 @@ def main():
     r = rospy.Rate(20)
     rospy.Subscriber("/laserscan", Float32, callback, 1)
     pub = rospy.Publisher("/altitude_tracker", queue_size=10)
-    while(True):
+    while not rospy.is_shutdown():
         if(abs(altitude1 - altitude0) < threshold)):
             pub.publish(altitude1); # There is no obstacle between drone and ground
         else:
-            while(True):
+            while not rospy.is_shutdown():
                 if(abs(altitude1 - altitude0 < threshold):
                     pub.publish(0); # Obstacle found. Do not remove points under obstacle
                 else:
