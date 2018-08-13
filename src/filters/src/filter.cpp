@@ -38,7 +38,15 @@ double mulThresh; // Statistical Outlier Removal Filter parameters
 
 void altitude_cb(const double msg)
 {
-    min_value_z = (msg * -1) + 0.2; // 20cm from ground will be deleted 
+    altitude = msg;
+    if(altitude == 0.0)
+    {
+        min_value_z = -20; // Do not remove ground
+    }
+    else
+    {
+        min_value_z = (altitude * -1) + 0.2; // 20cm from ground will be deleted 
+    }
 }
 
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)

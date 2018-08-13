@@ -47,7 +47,7 @@ int main(int argc, char **argv)
             {
                 if(abs(altitude1 - altitude0 < threshold)
                 {
-                    pub.publish(0); // Obstacle found. Do not remove points under obstacle
+                    pub.publish(0.0); // Obstacle found. Do not remove points under obstacle
                 }
                 else
                 {
