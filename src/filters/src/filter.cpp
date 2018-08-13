@@ -34,7 +34,12 @@ double min_value_x, max_value_x, // PassThrough Filter parameters
 int meanK; // Statistical Outlier Removal Filter parameters
 double mulThresh; // Statistical Outlier Removal Filter parameters
 
-// callback function
+// callback functions
+
+void altitude_cb(const double msg)
+{
+    min_value_z = msg;
+}
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     // Create point cloud and message objects
@@ -70,7 +75,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::PCLPointCloud2ConstPtr cloudPtr_X(x_removed_cloud);
     pcl_conversions::toPCL(carrier, *x_removed_cloud); // Convert to PCL data type
 
-    /* Perform the PassThrough Filter to the Y axis
+    // Perform the PassThrough Filter to the Y axis
     pcl::PassThrough<pcl::PCLPointCloud2> py_filter;
     py_filter.setInputCloud(cloudPtr_X); // Pass filtered_cloud to the filter
     py_filter.setFilterFieldName("y"); // Set axis y
@@ -81,11 +86,11 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::PCLPointCloud2* y_removed_cloud = new pcl::PCLPointCloud2;
     pcl::PCLPointCloud2ConstPtr cloudPtr_Y(y_removed_cloud);
     pcl_conversions::toPCL(carrier, *y_removed_cloud); // Convert to PCL data type
-    */
+
 
     // Perform the PassThrough Filter to the Z axis
     pcl::PassThrough<pcl::PCLPointCloud2> pz_filter;
-    pz_filter.setInputCloud(cloudPtr_X); // Pass filtered_cloud to the filter
+    pz_filter.setInputCloud(cloudPtr_Y); // Pass filtered_cloud to the filter
     pz_filter.setFilterFieldName("z"); // Set axis z
     pz_filter.setFilterLimits(min_value_z, max_value_z); // Set limits min_value to max_value
     pz_filter.filter(second_cloud); // Restore output data in second_cloud
@@ -126,11 +131,9 @@ int main(int argc, char **argv)
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
     nh_private.param<double>("max_value_x", max_value_x, 18.0);
-    /*
     nh_private.param<double>("min_value_y", min_value_y, -10.0);
     nh_private.param<double>("max_value_y", max_value_y, 10.0);
-    */
-    nh_private.param<double>("min_value_z", min_value_z, -10.0);
+    // nh_private.param<double>("min_value_z", min_value_z, -10.0);
     nh_private.param<double>("max_value_z", max_value_z, 10.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 64);
@@ -138,6 +141,7 @@ int main(int argc, char **argv)
 
     // Create Subscriber and listen subscribed_topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
+    ros::Subscriber laser = n.subscribe<double>(altitude_tracker, 1, altitude_cb);
 
     // Create Publisher
     pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 1);
