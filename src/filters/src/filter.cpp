@@ -123,14 +123,14 @@ int main(int argc, char **argv)
     nh_private.param<double>("leaf_size_z", leaf_size_z, 0.05);
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
-    nh_private.param<double>("max_value_x", max_value_x, 18.0);
+    nh_private.param<double>("max_value_x", max_value_x, 4.5);
     nh_private.param<double>("min_value_y", min_value_y, -20.0);
     nh_private.param<double>("max_value_y", max_value_y, 20.0);
     nh_private.param<double>("min_value_z", min_value_z, -20.0);
     nh_private.param<double>("max_value_z", max_value_z, 20.0);
     // Statistical Outlier Removal Filter Parameters
     nh_private.param<int>("meanK", meanK, 32);
-    nh_private.param<double>("mulThresh", mulThresh, 0.1);
+    nh_private.param<double>("mulThresh", mulThresh, 0.01);
 
     // Create Subscriber and listen subscribed_topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 48, cloud_cb);

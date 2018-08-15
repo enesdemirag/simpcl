@@ -28,7 +28,7 @@
         <param name="resolution" value="0.05"/>
         <param name="frame_id" type="string" value="world"/>
         <param name="sensor_model/max_range" value="4.5"/>
-        <remap from="cloud_in" to="/cloud_segmented"/>
+        <remap from="cloud_in" to="/cloud_icp"/>
     </node>
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find filters)/include/filters/mapping_settings.rviz" output="screen"/>
 </launch>
