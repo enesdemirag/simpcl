@@ -70,3 +70,7 @@ target_link_libraries(don_segmentation ${catkin_LIBRARIES})
 # Moving Least Squares Resampling
 add_executable(resampling src/resampling.cpp)
 target_link_libraries(resampling ${catkin_LIBRARIES})
+
+# Iterative Closest Point Algorithm
+add_executable(icp src/icp.cpp)
+target_link_libraries(icp ${catkin_LIBRARIES})
