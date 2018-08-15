@@ -15,68 +15,98 @@
 ros::Publisher pub;
 std::string subscribed_topic;
 std::string published_topic;
-int meanK;
-double mulThresh;
+
+pcl::PCLPointCloud2* cloud2_one = new pcl::PCLPointCloud2;
+pcl::PCLPointCloud2ConstPtr cloud2Ptr1(cloud2_one);
+
+pcl::PCLPointCloud2* cloud2_two = new pcl::PCLPointCloud2;
+pcl::PCLPointCloud2ConstPtr cloud2Ptr2(cloud2_two);
+
+pcl::PCLPointCloud2* carrier = new pcl::PCLPointCloud2;
+pcl::PCLPointCloud2ConstPtr cloudPtrCarry(carrier);
+
+pcl::PointCloud<pcl::PointXYZ> *cloudXYZ_one = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudXYZPtr1(cloudXYZ_one);
+
+pcl::PointCloud<pcl::PointXYZ> *cloudXYZ_two = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudXYZPtr2(cloudXYZ_two);
+
+pcl::PointCloud<pcl::PointXYZ> *cloudXYZ_three = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudXYZPtr3(cloudXYZ_three);
+
+pcl::PointCloud<pcl::PointXYZ> *cloudXYZ_four = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudXYZPtr4(cloudXYZ_four);
+
+pcl::PointCloud<pcl::PointXYZ> *cloud_icp1 = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPtrICP1(cloud_icp1);
+
+pcl::PointCloud<pcl::PointXYZ> *cloud_icp2 = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPtrICP2(cloud_icp2);
+
+pcl::PointCloud<pcl::PointXYZ> *cloud_final = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPtrFinal(cloud_final);
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
-    pcl::PCLPointCloud2* raw_cloud = new pcl::PCLPointCloud2;
-    pcl::PCLPointCloud2ConstPtr cloudPtr(raw_cloud);
+    *cloudXYZPtr1 = *cloudXYZPtr2;
+    *cloudXYZPtr2 = *cloudXYZPtr3;
+    *cloudXYZPtr3 = *cloudXYZPtr4;
 
-    pcl::PointCloud<pcl::PointXYZ> *smooth_cloud = new pcl::PointCloud<pcl::PointXYZ>;
-    pcl::PointCloud<pcl::PointXYZ>::Ptr smoothCloudPtr(smooth_cloud);
-
-    // Convert to PCL data type
-    pcl_conversions::toPCL(*cloud_msg, *raw_cloud);
-    pcl::fromPCLPointCloud2(*cloudPtr, *smoothCloudPtr);
-
-    // Convert to PCL data type
-    pcl_conversions::toPCL(*cloud_msg, *passed_cloud);
-
-    IterativeClosestPoint<PointXYZ, PointXYZ> icp;
-    // Set the input source and target
-    icp.setInputCloud (cloud_source);
-    icp.setInputTarget (cloud_target);
-    // Set the max correspondence distance to 5cm
-    icp.setMaxCorrespondenceDistance (0.05);
-    // Set the maximum number of iterations (criterion 1)
-    icp.setMaximumIterations (50);
-    // Set the transformation epsilon (criterion 2)
-    icp.setTransformationEpsilon (1e-8);
-    // Set the euclidean distance difference epsilon (criterion 3)
-    icp.setEuclideanFitnessEpsilon (1);
-    // Perform the alignment
-    icp.align (cloud_source_registered);
-    // Obtain the transformation that aligned cloud_source to cloud_source_registered
-    Eigen::Matrix4f transformation = icp.getFinalTransformation ();
-
-    // Convert to ROS data type
-    sensor_msgs::PointCloud2 output_cloud;
-    pcl_conversions::moveFromPCL(cleaned_cloud, output_cloud);
-
-    pub.publish(output_cloud); // Publish cleaned_cloud to the /cloud_cleaned topic
+    pcl_conversions::toPCL(*cloud_msg, *carrier);
+    pcl::fromPCLPointCloud2(*carrier, *cloudXYZPtr4);
 }
 
 // main
 int main(int argc, char **argv)
 {
     // Initialize ROS
-    ros::init(argc, argv, "statistical_removal");
+    ros::init(argc, argv, "icp");
     ros::NodeHandle n;
-
+    ros::Rate r(10);
     // Load parameters from launch file
     ros::NodeHandle nh_private("~");
-    nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_passed");
-    nh_private.param<std::string>("published_topic", published_topic, "cloud_cleaned");
+    nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_filtered");
+    nh_private.param<std::string>("published_topic", published_topic, "cloud_icp");
 
     // Create Subscriber and listen /cloud_passed topic
-    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
+    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 64, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 1);
+    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 64);
 
-    // Spin
-    ros::spin();
+    while(ros::ok())
+    {
+        pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp1;
+        icp1.setInputSource(cloudXYZPtr1);
+        icp1.setInputTarget(cloudXYZPtr2);
+        icp1.setMaxCorrespondenceDistance(0.1); // Set the max correspondence distance to 10cm
+        icp1.setMaximumIterations(32); // Set the maximum number of iterations (criterion 1)
+        icp1.setTransformationEpsilon(1e-8); // Set the transformation epsilon (criterion 2)
+        icp1.setEuclideanFitnessEpsilon(1); // Set the euclidean distance difference epsilon (criterion 3)
+        icp1.align(*cloud_icp1); // Perform the alignment
+
+        pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp2;
+        icp2.setInputSource(cloudXYZPtr3);
+        icp2.setInputTarget(cloudXYZPtr4);
+        icp2.setMaxCorrespondenceDistance(0.1); // Set the max correspondence distance to 10cm
+        icp2.setMaximumIterations(32); // Set the maximum number of iterations (criterion 1)
+        icp2.setTransformationEpsilon(1e-8); // Set the transformation epsilon (criterion 2)
+        icp2.setEuclideanFitnessEpsilon(1); // Set the euclidean distance difference epsilon (criterion 3)
+        icp2.align(*cloud_icp2); // Perform the alignment
+
+        pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
+        icp.setInputSource(cloudXYZPtr1);
+        icp.setInputTarget(cloudXYZPtr2);
+        icp.setMaxCorrespondenceDistance(0.025); // Set the max correspondence distance to 2.5cm
+        icp.setMaximumIterations(64); // Set the maximum number of iterations (criterion 1)
+        icp.setTransformationEpsilon(1e-8); // Set the transformation epsilon (criterion 2)
+        icp.setEuclideanFitnessEpsilon(1); // Set the euclidean distance difference epsilon (criterion 3)
+        icp.align(*cloud_final); // Perform the alignment
+
+        pub.publish(*cloud_final); // Publish
+        r.sleep();
+        ros::spinOnce();
+    }
     return 0;
 }
