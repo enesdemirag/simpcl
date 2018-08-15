@@ -57,20 +57,25 @@ target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
 
 # Progressive Morphological Filter
 add_executable(morphological_segmentation src/morphological_segmentation.cpp)
+target_link_libraries(morphological_segmentation ${PCL_LIBRARIES})
 target_link_libraries(morphological_segmentation ${catkin_LIBRARIES})
 
 # Region Growing Segmentation
 add_executable(region_growing_segmentation src/region_growing_segmentation.cpp)
+target_link_libraries(region_growing_segmentation ${PCL_LIBRARIES})
 target_link_libraries(region_growing_segmentation ${catkin_LIBRARIES})
 
 # Difference Of Normals Segmentation
 add_executable(don_segmentation src/don_segmentation.cpp)
+target_link_libraries(don_segmentation ${PCL_LIBRARIES})
 target_link_libraries(don_segmentation ${catkin_LIBRARIES})
 
 # Moving Least Squares Resampling
 add_executable(resampling src/resampling.cpp)
+target_link_libraries(resampling ${PCL_LIBRARIES})
 target_link_libraries(resampling ${catkin_LIBRARIES})
 
 # Iterative Closest Point Algorithm
 add_executable(icp src/icp.cpp)
+target_link_libraries(icp ${PCL_LIBRARIES})
 target_link_libraries(icp ${catkin_LIBRARIES})
