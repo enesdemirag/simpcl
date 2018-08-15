@@ -9,14 +9,14 @@
         <param name="leaf_size_z" type="double" value="0.05"/> # Set leaf size on z axis
         # PassThrough Filter parameters
         <param name="min_value_x" type="double" value="0.5"/> # Set minimum distance x
-        <param name="max_value_x" type="double" value="12.0"/> # Set maximum distance x
+        <param name="max_value_x" type="double" value="4.5"/> # Set maximum distance x
         <param name="min_value_y" type="double" value="-20.0"/> # Set minimum distance y
         <param name="max_value_y" type="double" value="20.0"/> # Set maximum distance y
         <param name="min_value_z" type="double" value="-20.0"/> # Set minimum distance z
         <param name="max_value_z" type="double" value="20.0"/> # Set maximum distance z
         # Statistical Outlier Removal Filter parameters
-        <param name="meanK" type="int" value="64"/> # Set the number of neighbors to analyze for each point
-        <param name="mulThresh" type="double" value="1.5"/> # Set standard deviation multiplier
+        <param name="meanK" type="int" value="32"/> # Set the number of neighbors to analyze for each point
+        <param name="mulThresh" type="double" value="0.01"/> # Set standard deviation multiplier
     </node>
     <node name="tf_broadcaster" pkg="filters" type="tf_broadcaster" output="screen">
         <param name="subscribed_topic" type="string" value="/odom"/>
@@ -25,10 +25,10 @@
         <param name="loop_rate" type="int" value="10"/>
     </node>
     <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
-        <param name="resolution" value="0.08"/>
+        <param name="resolution" value="0.05"/>
         <param name="frame_id" type="string" value="world"/>
-        <param name="sensor_model/max_range" value="12.0"/>
-        <remap from="cloud_in" to="/cloud_filtered"/>
+        <param name="sensor_model/max_range" value="4.5"/>
+        <remap from="cloud_in" to="/cloud_segmented"/>
     </node>
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find filters)/include/filters/mapping_settings.rviz" output="screen"/>
 </launch>

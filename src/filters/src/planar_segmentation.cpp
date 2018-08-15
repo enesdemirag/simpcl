@@ -59,7 +59,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     seg1.setOptimizeCoefficients(optimizeCoefficients);
     seg1.setModelType(pcl::SACMODEL_PLANE);
     seg1.setMethodType(pcl::SAC_RANSAC);
-    seg1.setMaxIterations(100);
+    seg1.setMaxIterations(50);
     seg1.setDistanceThreshold(distanceThreshold);
     seg1.setInputCloud(xyzCloudPtr);
     seg1.segment(*inliers, *coefficients);
@@ -68,7 +68,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pcl::ExtractIndices<pcl::PointXYZRGB> extract;
     extract.setInputCloud(xyzCloudPtr);
     extract.setIndices(inliers);
-    extract.setNegative(false);
+    extract.setNegative(true);
     extract.filter(*xyzCloudPtrRansacFiltered);
 
     // Publish
@@ -87,13 +87,13 @@ int main(int argc, char **argv)
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_filtered");
     nh_private.param<std::string>("published_topic", published_topic, "cloud_segmented");
     nh_private.param<bool>("optimizeCoefficients", optimizeCoefficients, true);
-    nh_private.param<double>("distanceThreshold", distanceThreshold, 1.0);
+    nh_private.param<double>("distanceThreshold", distanceThreshold, 0.3);
 
     // Create Subscriber and listen subscribed_topic
-    ros::Subscriber sub = n.subscribe(subscribed_topic, 100, cloud_cb);
+    ros::Subscriber sub = n.subscribe(subscribed_topic, 48, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<pcl::PointCloud<pcl::PointXYZRGB> >(published_topic, 100);
+    pub = n.advertise<pcl::PointCloud<pcl::PointXYZRGB> >(published_topic, 48);
 
     // Spin
     ros::spin();

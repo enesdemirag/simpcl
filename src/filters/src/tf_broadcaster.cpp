@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     nh_private.param<int>("loop_rate", loop_rate, 10);
 
     // Subscribe
-    ros::Subscriber sub = n.subscribe<nav_msgs::Odometry>(subscribed_topic, 10, callback);
+    ros::Subscriber sub = n.subscribe<nav_msgs::Odometry>(subscribed_topic, 48, callback);
     // Create broudcaster and transformer objects
     tf::TransformBroadcaster odom_broadcaster;
     geometry_msgs::TransformStamped odom_transform;

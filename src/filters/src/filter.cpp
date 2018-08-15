@@ -21,7 +21,6 @@
 
 // Definitions
 ros::Publisher pub;
-
 std::string subscribed_topic;
 std::string published_topic;
 
@@ -130,14 +129,14 @@ int main(int argc, char **argv)
     nh_private.param<double>("min_value_z", min_value_z, -20.0);
     nh_private.param<double>("max_value_z", max_value_z, 20.0);
     // Statistical Outlier Removal Filter Parameters
-    nh_private.param<int>("meanK", meanK, 64);
-    nh_private.param<double>("mulThresh", mulThresh, 1.5);
+    nh_private.param<int>("meanK", meanK, 32);
+    nh_private.param<double>("mulThresh", mulThresh, 0.1);
 
     // Create Subscriber and listen subscribed_topic
-    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
+    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 48, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 1);
+    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 48);
 
     // Spin
     ros::spin();

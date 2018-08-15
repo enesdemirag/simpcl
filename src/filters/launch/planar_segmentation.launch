@@ -3,6 +3,6 @@
         <param name="subscribed_topic" type="string" value="/cloud_filtered"/>
         <param name="published_topic" type="string" value="cloud_segmented"/>
         <param name="optimizeCoefficients" type="bool" value="true"/>
-        <param name="distanceThreshold" type="double" value="0.01"/>
+        <param name="distanceThreshold" type="double" value="0.3"/>
     </node>
 </launch>
