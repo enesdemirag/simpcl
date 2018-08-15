@@ -15,6 +15,8 @@
 ros::Publisher pub;
 std::string subscribed_topic;
 std::string published_topic;
+double max_distance;
+int max_iteration;
 
 pcl::PCLPointCloud2* cloud2_one = new pcl::PCLPointCloud2;
 pcl::PCLPointCloud2ConstPtr cloud2Ptr1(cloud2_one);
@@ -67,9 +69,11 @@ int main(int argc, char **argv)
     // Load parameters from launch file
     ros::NodeHandle nh_private("~");
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_filtered");
-    nh_private.param<std::string>("published_topic", published_topic, "cloud_icp");
+    nh_private.param<std::string>("published_topic", published_topic, "cloud_final");
+    nh_private.param<double>("max_distance", max_distance, 0.1);
+    nh_private.param<int>("max_iteration", max_iteration, 32);
 
-    // Create Subscriber and listen /cloud_passed topic
+    // Create Subscriber and listen subscribed_topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 64, cloud_cb);
 
     // Create Publisher

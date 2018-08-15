@@ -1,0 +1,8 @@
+<launch>
+    <node name="icp" pkg="filters" type="icp" output="screen">
+        <param name="subscribed_topic" type="string" value="/cloud_filtered"/>
+        <param name="published_topic" type="string" value="cloud_final"/>
+        <param name="max_distance" type="double" value="0.1"/>
+        <param name="max_iteration" type="int" value="32"/>
+    </node>
+<launch>
