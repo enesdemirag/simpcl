@@ -1,3 +1,6 @@
+//FIXME: Fix conversation functions
+// https://github.com/ethz-asl/libpointmatcher/blob/master/examples/icp.cpp
+
 // Import dependencies
 #include <cassert>
 #include <iostream>
@@ -7,9 +10,6 @@
 #include "pointmatcher/PointMatcher.h"
 #include "pointmatcher_ros/point_cloud.h"
 #include "pointmatcher_ros/transform.h"
-#include "pointmatcher_ros/get_params_from_server.h"
-#include "pointmatcher_ros/ros_logger.h"
-#include "ethzasl_icp_mapper/MatchClouds.h"
 
 using namespace std;
 using namespace PointMatcherSupport;
@@ -20,14 +20,14 @@ std::string subscribed_topic;
 std::string published_topic;
 typedef PointMatcher<float> PM;
 typedef PM::DataPoints DP;
-const DP cloud1 = new DP;
-const DP cloud2 = new DP;
+DP cloud1;
+DP cloud2;
 
 // callback
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     cloud2 = cloud1;
-    cloud1 = rosMsgToPointMatcherCloud(*cloud_msg);
+    cloud1 = PointMatcher_ros::rosMsgToPointMatcherCloud(*cloud_msg);
 }
 
 // main
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     	icp.transformations.apply(cloud_final, T);
 
         sensor_msgs::PointCloud2 output_cloud;
-        output_cloud = pointMatcherCloudToRosMsg(cloud_final);
+        output_cloud = PointMatcher_ros::pointMatcherCloudToRosMsg(cloud_final);
         pub.publish(output_cloud);
         r.sleep();
         ros::spinOnce();
