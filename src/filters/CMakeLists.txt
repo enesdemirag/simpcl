@@ -84,3 +84,8 @@ target_link_libraries(icp ${catkin_LIBRARIES})
 add_executable(handmade src/handmade.cpp)
 target_link_libraries(handmade ${PCL_LIBRARIES})
 target_link_libraries(handmade ${catkin_LIBRARIES})
+
+# LibPointMatcher ICP Filter
+add_executable(pointmatcher src/pointmatcher.cpp)
+target_link_libraries(pointmatcher ${PCL_LIBRARIES})
+target_link_libraries(pointmatcher ${catkin_LIBRARIES})
