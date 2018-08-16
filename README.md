@@ -65,6 +65,8 @@ $ roslaunch filters mapping.launch
 
 # Documents about Point Cloud Processing #
 
+* **Introduction to PCL** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/PCLIntro.pdf)*
+
 * **An Efficient Probabilistic 3D Mapping Framework Based on Octrees** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/OctoMap.pdf)*
 
 * **3D Mapping with OctoMap** - *[Presentation](http://www2.informatik.uni-freiburg.de/~hornunga/pub/hornung13roscon.pdf)*
@@ -96,10 +98,14 @@ $ roslaunch filters mapping.launch
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ### Work in progress
-* Removing ground using segmentation methods
+* ~~Removing ground using segmentation methods~~
+* Filtering with ICP Algorithm
 
 #### Planar Segmentation
-![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "red -> removed parts")
+![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "axis color -> remained parts")
 ---
 > `Note:` Difference of Normals Based Segmentation (don_segmentation.cpp)
 and Progressive Morphological Segmentation (morphological_segmentation.cpp) nodes are not working properly for now.
+
+#### ICP
+![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/icp.gif "mapping after ICP filter")
