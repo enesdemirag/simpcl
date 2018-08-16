@@ -1,5 +1,5 @@
 // Iterative Closest Point Algorithm
-// FIXME: Segmentation Error
+// TODO: Publishing nothing
 // Import dependencies
 #include <ros/ros.h>
 #include <string>
@@ -60,6 +60,14 @@ int main(int argc, char **argv)
 
     while(ros::ok())
     {
+        if(cloudXYZ_one->points.size() < cloudXYZ_two->points.size())
+        {
+            count = cloudXYZ_one->points.size();
+        }
+        else
+        {
+            count = cloudXYZ_two->points.size();
+        }
         for (size_t i = -1; i < count; ++i)
         {
             if(abs(cloudXYZ_one->points[i].x - cloudXYZ_two->points[i].x) < threshold)
