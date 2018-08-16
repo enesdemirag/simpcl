@@ -79,3 +79,8 @@ target_link_libraries(resampling ${catkin_LIBRARIES})
 add_executable(icp src/icp.cpp)
 target_link_libraries(icp ${PCL_LIBRARIES})
 target_link_libraries(icp ${catkin_LIBRARIES})
+
+# Handmade Filter
+add_executable(handmade src/handmade.cpp)
+target_link_libraries(handmade ${PCL_LIBRARIES})
+target_link_libraries(handmade ${catkin_LIBRARIES})
