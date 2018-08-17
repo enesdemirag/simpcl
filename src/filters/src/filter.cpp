@@ -123,7 +123,7 @@ int main(int argc, char **argv)
     nh_private.param<double>("leaf_size_z", leaf_size_z, 0.05);
     // PassThrough Filter Parameters
     nh_private.param<double>("min_value_x", min_value_x, 0.5);
-    nh_private.param<double>("max_value_x", max_value_x, 4.5);
+    nh_private.param<double>("max_value_x", max_value_x, 15.0);
     nh_private.param<double>("min_value_y", min_value_y, -20.0);
     nh_private.param<double>("max_value_y", max_value_y, 20.0);
     nh_private.param<double>("min_value_z", min_value_z, -20.0);
