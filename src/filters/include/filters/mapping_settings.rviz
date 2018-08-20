@@ -28,7 +28,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: octomap_cloud
 Visualization Manager:
   Class: ""
   Displays:
@@ -147,8 +147,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 16.9750004
-        Min Value: 1.77499998
+        Max Value: 20.6375008
+        Min Value: 11.7124996
         Value: true
       Axis: X
       Channel Name: intensity
@@ -247,25 +247,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 15.4146214
+      Distance: 2.97920609
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 8.04673958
-        Y: 1.92689252
-        Z: -1.24918008
+        X: 11.7443008
+        Y: -0.790473223
+        Z: 1.98329139
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.265396625
+      Pitch: 0.245396778
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.93232036
+      Yaw: 1.99730647
     Saved: ~
 Window Geometry:
   Displays:

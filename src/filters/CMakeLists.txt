@@ -66,6 +66,6 @@ target_link_libraries(icp ${PCL_LIBRARIES})
 target_link_libraries(icp ${catkin_LIBRARIES})
 
 # LibPointMatcher ICP Filter
-add_executable(pointmatcher src/pointmatcher.cpp)
-target_link_libraries(pointmatcher ${PCL_LIBRARIES})
-target_link_libraries(pointmatcher ${catkin_LIBRARIES})
+#add_executable(pointmatcher src/pointmatcher.cpp)
+#target_link_libraries(pointmatcher ${PCL_LIBRARIES})
+#target_link_libraries(pointmatcher ${catkin_LIBRARIES})
