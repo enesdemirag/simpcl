@@ -1,5 +1,5 @@
 // Iterative Closest Point Algorithm
-
+// FIXME: Shared pointer error while inserting the output cloud from one icp to other.
 // Import dependencies
 #include <ros/ros.h>
 #include <string>
@@ -88,8 +88,8 @@ int main(int argc, char **argv)
         icp1.setMaximumIterations(32); // Set the maximum number of iterations (criterion 1)
         icp1.setTransformationEpsilon(1e-8); // Set the transformation epsilon (criterion 2)
         icp1.setEuclideanFitnessEpsilon(1); // Set the euclidean distance difference epsilon (criterion 3)
-        icp1.align(*cloud_icp1); // Perform the alignment
-
+        icp1.align(*cloud_final); // Perform the alignment
+        /*
         pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp2;
         icp2.setInputSource(cloudXYZPtr3);
         icp2.setInputTarget(cloudXYZPtr4);
@@ -100,14 +100,14 @@ int main(int argc, char **argv)
         icp2.align(*cloud_icp2); // Perform the alignment
 
         pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
-        icp.setInputSource(cloudXYZPtr1);
-        icp.setInputTarget(cloudXYZPtr2);
+        icp.setInputSource(*cloud_icp1);
+        icp.setInputTarget(*cloud_icp2);
         icp.setMaxCorrespondenceDistance(0.025); // Set the max correspondence distance to 2.5cm
         icp.setMaximumIterations(64); // Set the maximum number of iterations (criterion 1)
         icp.setTransformationEpsilon(1e-8); // Set the transformation epsilon (criterion 2)
         icp.setEuclideanFitnessEpsilon(1); // Set the euclidean distance difference epsilon (criterion 3)
         icp.align(*cloud_final); // Perform the alignment
-
+        */
         pub.publish(*cloud_final); // Publish
         r.sleep();
         ros::spinOnce();
