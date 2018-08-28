@@ -84,8 +84,8 @@ int main(int argc, char **argv)
         pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp1;
         icp1.setInputSource(cloudXYZPtr1);
         icp1.setInputTarget(cloudXYZPtr2);
-        icp1.setMaxCorrespondenceDistance(0.1); // Set the max correspondence distance to 10cm
-        icp1.setMaximumIterations(32); // Set the maximum number of iterations (criterion 1)
+        icp1.setMaxCorrespondenceDistance(max_distance); // Set the max correspondence distance to 10cm
+        icp1.setMaximumIterations(max_iteration); // Set the maximum number of iterations (criterion 1)
         icp1.setTransformationEpsilon(1e-8); // Set the transformation epsilon (criterion 2)
         icp1.setEuclideanFitnessEpsilon(1); // Set the euclidean distance difference epsilon (criterion 3)
         icp1.align(*cloud_final); // Perform the alignment

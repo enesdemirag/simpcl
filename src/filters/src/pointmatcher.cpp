@@ -58,7 +58,7 @@ PM::TransformationParameters parseTranslation(string& translation, const int clo
 	float extraOutput = 0;
 	if((translationStringStream >> extraOutput))
     {
-		cerr << "Wrong initial translation size" << endl
+	    cerr << "Wrong initial translation size" << endl
 			 << "No initial translation will be used" << endl;
 		return parsedTranslation;
 	}
@@ -142,7 +142,9 @@ int main(int argc, char **argv)
 
     	PM::TransformationParameters T = icp(initializedData, cloud2);
     	if(isVerbose)
-    		cout << "match ratio: " << icp.errorMinimizer->getWeightedPointUsedRatio() << endl;
+        {
+            cout << "match ratio: " << icp.errorMinimizer->getWeightedPointUsedRatio() << endl;
+        }
 
     	DP cloud_final(initializedData);
     	icp.transformations.apply(cloud_final, T);

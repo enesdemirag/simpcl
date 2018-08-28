@@ -8,13 +8,13 @@
         <param name="leaf_size_z" type="double" value="0.05"/> # Set leaf size on z axis
         # PassThrough Filter parameters
         <param name="min_value_x" type="double" value="0.5"/> # Set minimum distance x
-        <param name="max_value_x" type="double" value="18.0"/> # Set maximum distance x
+        <param name="max_value_x" type="double" value="10.0"/> # Set maximum distance x
         <param name="min_value_y" type="double" value="-20.0"/> # Set minimum distance y
         <param name="max_value_y" type="double" value="20.0"/> # Set maximum distance y
         <param name="min_value_z" type="double" value="-20.0"/> # Set minimum distance z
         <param name="max_value_z" type="double" value="20.0"/> # Set maximum distance z
         # Statistical Outlier Removal Filter parameters
-        <param name="meanK" type="int" value="32"/> # Set the number of neighbors to analyze for each point
-        <param name="mulThresh" type="double" value="0.01"/> # Set standard deviation multiplier
+        <param name="meanK" type="int" value="16"/> # Set the number of neighbors to analyze for each point
+        <param name="mulThresh" type="double" value="0.001"/> # Set standard deviation multiplier
     </node>
 </launch>
