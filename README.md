@@ -99,13 +99,14 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ### Work in progress
 * ~~Removing ground using segmentation methods~~
-* Filtering with ICP Algorithm
+* ~~Filtering with ICP Algorithm~~
+* Real-time mapping
 
 #### Planar Segmentation
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "axis color -> remained parts")
 ---
 > `Note:` Difference of Normals Based Segmentation (don_segmentation.cpp)
-and Progressive Morphological Segmentation (morphological_segmentation.cpp) nodes are not working properly for now.
+and Progressive Morphological Segmentation (morphological_segmentation.cpp) nodes are not working properly for now. Additionally [libpointmatcher](https://github.com/ethz-asl/libpointmatcher) library used in pointmatcher node instead of PCL, but it is also not working because of wrong initial translation and rotation sizes. 
 
 #### ICP
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/icp.gif "mapping after ICP filter")

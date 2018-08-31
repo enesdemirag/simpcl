@@ -8,17 +8,17 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf
-  libpointmatcher
+#  libpointmatcher
 )
-find_package(libpointmatcher REQUIRED)
-catkin_package()
+#find_package(libpointmatcher REQUIRED)
+#catkin_package()
 
 include_directories(${catkin_INCLUDE_DIRS})
 include_directories(${PCL_INCLUDE_DIRS})
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS} ${libpointmatcher_INCLUDE_DIRS})
+#include_directories(${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS} ${libpointmatcher_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
-add_definitions(--std=c++11)
+#add_definitions(--std=c++11)
 
 # VoxelGrid Filter Node
 add_executable(voxel_filter src/voxel_filter.cpp)
@@ -70,7 +70,7 @@ target_link_libraries(icp ${PCL_LIBRARIES})
 target_link_libraries(icp ${catkin_LIBRARIES})
 
 # LibPointMatcher ICP Filter
-add_executable(pointmatcher src/pointmatcher.cpp)
-target_link_libraries(pointmatcher ${PCL_LIBRARIES})
-target_link_libraries(pointmatcher ${catkin_LIBRARIES})
-target_link_libraries(pointmatcher ${libpointmatcher_LIBRARIES} ${Boost_LIBRARIES})
+#add_executable(pointmatcher src/pointmatcher.cpp)
+#target_link_libraries(pointmatcher ${PCL_LIBRARIES})
+#target_link_libraries(pointmatcher ${catkin_LIBRARIES})
+#target_link_libraries(pointmatcher ${libpointmatcher_LIBRARIES} ${Boost_LIBRARIES})
