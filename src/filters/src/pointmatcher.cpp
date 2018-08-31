@@ -1,4 +1,3 @@
-//FIXME: Fix conversation functions
 // https://github.com/ethz-asl/libpointmatcher/blob/master/examples/icp.cpp
 
 // Import dependencies
@@ -9,6 +8,7 @@
 #include "ros/ros.h"
 #include "pointmatcher/PointMatcher.h"
 #include "pointmatcher_ros/point_cloud.h"
+#include "pointmatcher_ros/point_cloud_extra.h"
 #include "pointmatcher_ros/transform.h"
 #include "sensor_msgs/PointCloud2.h"
 
@@ -31,7 +31,8 @@ string initRotation("1,0,0;0,1,0;0,0,1");
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     cloud2 = cloud1;
-    cloud1= rosMsgToPointMatcherCloud(*cloud_msg);
+    //cloud1 = PointMatcher_ros::rosMsgToPointMatcherCloud<float>(cloud_msg);
+    cloud1 = PointMatcher_ros::rosMsgToPointMatcherCloud<float>(*cloud_msg);
 }
 
 PM::TransformationParameters parseTranslation(string& translation, const int cloudDimension)
@@ -150,7 +151,8 @@ int main(int argc, char **argv)
     	icp.transformations.apply(cloud_final, T);
 
         sensor_msgs::PointCloud2 output_cloud;
-        output_cloud = PointMatcher_ros::pointMatcherCloudToRosMsg(cloud_final);
+        std::string frame_id = "world";
+        output_cloud = PointMatcher_ros::pointMatcherCloudToRosMsg<float>(cloud_final, frame_id, ros::Time::now());
         pub.publish(output_cloud);
         r.sleep();
         ros::spinOnce();
