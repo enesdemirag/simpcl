@@ -32,7 +32,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr cloudXYZPtr1(cloudXYZ_one);
 pcl::PointCloud<pcl::PointXYZ> *cloudXYZ_two = new pcl::PointCloud<pcl::PointXYZ>;
 pcl::PointCloud<pcl::PointXYZ>::Ptr cloudXYZPtr2(cloudXYZ_two);
 
-pcl::PointCloud<pcl::PointXYZ> *cloud_final = new pcl::PointCloud<pcl::PointXYZ>;
+pcl::PointCloud<pcl::PointXYZ> *cloud_icp = new pcl::PointCloud<pcl::PointXYZ>;
 pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPtrFinal(cloud_icp);
 
 // callback
