@@ -17,12 +17,6 @@ std::string published_topic;
 double max_distance;
 int max_iteration;
 
-pcl::PCLPointCloud2* cloud2_one = new pcl::PCLPointCloud2;
-pcl::PCLPointCloud2ConstPtr cloud2Ptr1(cloud2_one);
-
-pcl::PCLPointCloud2* cloud2_two = new pcl::PCLPointCloud2;
-pcl::PCLPointCloud2ConstPtr cloud2Ptr2(cloud2_two);
-
 pcl::PCLPointCloud2* carrier = new pcl::PCLPointCloud2;
 pcl::PCLPointCloud2ConstPtr cloudPtrCarry(carrier);
 
