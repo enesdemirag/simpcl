@@ -106,7 +106,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/planar_segmentation.gif "axis color -> remained parts")
 ---
 > `Note:` Difference of Normals Based Segmentation (don_segmentation.cpp)
-and Progressive Morphological Segmentation (morphological_segmentation.cpp) nodes are not working properly for now. Additionally [libpointmatcher](https://github.com/ethz-asl/libpointmatcher) library used in pointmatcher node instead of PCL, but it is also not working because of wrong initial translation and rotation sizes. 
+and Progressive Morphological Segmentation (morphological_segmentation.cpp) nodes are not working properly for now. Additionally [libpointmatcher](https://github.com/ethz-asl/libpointmatcher) library used in pointmatcher node instead of PCL, but it is also not working because of wrong initial translation and rotation sizes.
 
 #### ICP
 ![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/icp.gif "mapping after ICP filter")
+---
+* Results: ([octovis](http://wiki.ros.org/octovis) required)
+    * [with 5 meter sight](http://web.itu.edu.tr/demirag16/media/5m.bt)
+    * [with 10 meter sight](http://web.itu.edu.tr/demirag16/media/10m.bt)
