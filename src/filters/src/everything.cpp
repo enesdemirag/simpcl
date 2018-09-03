@@ -144,10 +144,10 @@ int main(int argc, char **argv)
     nh_private.param<int>("max_iteration", max_iteration, 16);
 
     // Create Subscriber and listen subscribed_topic
-    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 48, cloud_cb);
+    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 128, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 48);
+    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 128);
 
     while(ros::ok())
     {
