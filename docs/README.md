@@ -12,8 +12,14 @@
 
 * **Pairwise, Rigid Registration The ICP Algorithm and Its Variants** - *[Presentation](Pairwise-RigidRegistration.pdf)*
 
-* **Point Cloud Segmentation and Classification Algorithms** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PointCloudSegmentationAndClassificationAlgorithms.pdf)*
+* **Point Cloud Segmentation and Classification Algorithms** - *[Report](http://web.itu.edu.tr/demirag16/media/docs/PointCloudSegmentationAndClassificationAlgorithms.pdf)*
 
 * **Progressive Morphological Filter for Removing Nonground Measurements** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/ProgressiveMorphologicalFilter.pdf)*
 
 * **Difference of Normals as a Multi-Scale Operator in Unorganized Point Clouds** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/DoNSegmentation.pdf)*
+
+* **Plane Detection and Segmentation For DARPA Robotics Challange** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PlaneDetectionandSegmentation.pdf)*
+
+* **Automated Extraction of Urban Road Facilities** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/StudiesonGroundRemoval.pdf)*
+
+* **ICP Algorithm and Its Variants** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/Pairwise-RigidRegistration.pdf)*

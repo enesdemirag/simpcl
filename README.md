@@ -61,7 +61,9 @@ $ roslaunch filters mapping.launch
 
 #### Example Parameter
 
-``` <param name="parameter_name" type="parameter_type" value="parameter_value"/> ```
+```
+<param name="parameter_name" type="parameter_type" value="parameter_value"/>
+```
 
 # Documents about Point Cloud Processing #
 
@@ -88,6 +90,8 @@ $ roslaunch filters mapping.launch
 * **Plane Detection and Segmentation For DARPA Robotics Challange** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PlaneDetectionandSegmentation.pdf)*
 
 * **Automated Extraction of Urban Road Facilities** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/StudiesonGroundRemoval.pdf)*
+
+* **ICP Algorithm and Its Variants** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/Pairwise-RigidRegistration.pdf)*
 
 ## Author
 
