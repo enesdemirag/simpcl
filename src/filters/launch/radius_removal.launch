@@ -1,8 +1,8 @@
 <launch>
     <node name="radius_removal" pkg="filters" type="radius_removal" output="screen">
-        <param name="subscribed_topic" type="string" value="/cloud_passed"/>
+        <param name="subscribed_topic" type="string" value="cloud_downsampled"/>
         <param name="published_topic" type="string" value="cloud_cleaned"/>
         <param name="radius" type="double" value="0.5"/>
-        <param name="minNeighbors" type="int" value="10"/>
+        <param name="minNeighbors" type="int" value="100"/>
     </node>
 </launch>
