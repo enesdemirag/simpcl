@@ -1,0 +1,8 @@
+<launch>
+    <node name="icp" pkg="simpcl" type="icp" output="screen">
+        <param name="subscribed_topic" type="string" value="/point_cloud"/>
+        <param name="published_topic" type="string" value="cloud_icp"/>
+        <param name="max_distance" type="double" value="0.1"/>
+        <param name="max_iteration" type="int" value="32"/>
+    </node>
+<launch>

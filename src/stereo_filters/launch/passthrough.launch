@@ -1,9 +1,0 @@
-<launch>
-    <node name="passthrough_filter" pkg="stereo_filters" type="passthrough_filter" output="screen">
-        <param name="subscribed_topic" type="string" value="/cloud_downsampled"/>
-        <param name="published_topic" type="string" value="cloud_passed"/>
-        <param name="field_name" type="string" value="x"/>
-        <param name="min_value" type="double" value="0.5"/>
-        <param name="max_value" type="double" value="18.0"/>
-    </node>
-</launch>

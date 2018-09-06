@@ -1,0 +1,9 @@
+<launch>
+    <node name="voxel_filter" pkg="simpcl" type="voxel_filter" output="screen">
+        <param name="subscribed_topic" type="string" value="/point_cloud"/>
+        <param name="published_topic" type="string" value="cloud_downsampled"/>
+        <param name="leaf_size_x" type="double" value="0.05"/>
+        <param name="leaf_size_y" type="double" value="0.05"/>
+        <param name="leaf_size_z" type="double" value="0.05"/>
+    </node>
+</launch>

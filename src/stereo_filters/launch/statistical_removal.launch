@@ -1,8 +1,0 @@
-<launch>
-    <node name="statistical_removal" pkg="stereo_filters" type="statistical_removal" output="screen">
-        <param name="subscribed_topic" type="string" value="/cloud_downsampled"/>
-        <param name="published_topic" type="string" value="cloud_cleaned"/>
-        <param name="meanK" type="int" value="75"/>
-        <param name="mulThresh" type="double" value="1.25"/>
-    </node>
-</launch>

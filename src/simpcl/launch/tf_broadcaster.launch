@@ -1,0 +1,8 @@
+<launch>
+    <node name="tf_broadcaster" pkg="simpcl" type="tf_broadcaster" output="screen">
+        <param name="subscribed_topic" type="string" value="/odometry"/>
+        <param name="base_frame" type="string" value="world"/>
+        <param name="child_frame" type="string" value="stereo_camera"/>
+        <param name="loop_rate" type="int" value="10"/>
+    </node>
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+    <node name="statistical_removal" pkg="simpcl" type="statistical_removal" output="screen">
+        <param name="subscribed_topic" type="string" value="/point_cloud"/>
+        <param name="published_topic" type="string" value="cloud_removed"/>
+        <param name="meanK" type="int" value="75"/>
+        <param name="mulThresh" type="double" value="1.25"/>
+    </node>
+</launch>
