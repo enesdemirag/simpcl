@@ -1,4 +1,5 @@
 // Projecting points using a parametric model
+// Plane Model used.
 // http://www.pointclouds.org/documentation/tutorials/project_inliers.php
 
 // Import dependencies

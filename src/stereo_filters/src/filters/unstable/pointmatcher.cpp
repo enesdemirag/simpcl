@@ -1,4 +1,10 @@
 // https://github.com/ethz-asl/libpointmatcher/blob/master/examples/icp.cpp
+// In order to work with pointmatcher library, you need to install first.
+// libpointmatcher is another point cloud processing tool like PCL.
+// for my opinion, It has great filter and documentation is awesome, but integratin with ROS is challanging.
+// Check out the repo: https://github.com/ethz-asl/libpointmatcher
+
+// FIXME: Fix transform to rosMsg error
 
 // Import dependencies
 #include <cassert>

@@ -1,4 +1,4 @@
-// This node broudcasts Odometry data from a base frame to child frame
+// This node broadcasts Odometry data from a base frame to child frame
 
 // Import dependencies
 #include <ros/ros.h>

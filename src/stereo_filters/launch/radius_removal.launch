@@ -1,5 +1,5 @@
 <launch>
-    <node name="radius_removal" pkg="filters" type="radius_removal" output="screen">
+    <node name="radius_removal" pkg="stereo_filters" type="radius_removal" output="screen">
         <param name="subscribed_topic" type="string" value="cloud_downsampled"/>
         <param name="published_topic" type="string" value="cloud_cleaned"/>
         <param name="radius" type="double" value="0.5"/>

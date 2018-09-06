@@ -1,4 +1,4 @@
-// Getting points between 0.5m to 18m with "Passthrough Filter"
+// Getting points between min_value to max_value with "Passthrough Filter"
 // http://pointclouds.org/documentation/tutorials/passthrough.php
 
 // Import dependencies
@@ -56,8 +56,8 @@ int main(int argc, char **argv)
     nh_private.param<std::string>("subscribed_topic", subscribed_topic, "/cloud_downsampled");
     nh_private.param<std::string>("published_topic", published_topic, "cloud_passed");
     nh_private.param<std::string>("field_name", field_name, "x");
-    nh_private.param<double>("min_value", min_value, 0.5);
-    nh_private.param<double>("max_value", max_value, 18.0);
+    nh_private.param<double>("min_value", min_value, 0.5); // 50 cm
+    nh_private.param<double>("max_value", max_value, 15.0); // 15 meters
 
     // Create Subscriber and listen /cloud_downsampled topic
     ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);

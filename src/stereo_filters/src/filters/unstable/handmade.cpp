@@ -1,5 +1,6 @@
 // Iterative Closest Point Algorithm
-// TODO: Publishing nothing
+// FIXME: Publishing nothing
+// ERROR:
 // Import dependencies
 #include <ros/ros.h>
 #include <string>

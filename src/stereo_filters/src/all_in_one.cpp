@@ -116,7 +116,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 int main(int argc, char **argv)
 {
     // Initialize ROS
-    ros::init(argc, argv, "everything");
+    ros::init(argc, argv, "all_in_one");
     ros::NodeHandle n;
     ros::Rate r(10);
 

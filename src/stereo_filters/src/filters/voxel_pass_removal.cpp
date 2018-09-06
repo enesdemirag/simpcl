@@ -1,5 +1,6 @@
 // Voxel Grid, PassThrough, and Statistical Outlier Removal filters applied respectively
 // to the raw point cloud coming from zed camera, and filtered point cloud published
+
 // http://pointclouds.org/documentation/tutorials/voxel_grid.php
 // http://pointclouds.org/documentation/tutorials/passthrough.php
 // http://pointclouds.org/documentation/tutorials/statistical_outlier.php
@@ -109,7 +110,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 int main(int argc, char **argv)
 {
     // Initialize ROS
-    ros::init(argc, argv, "filter");
+    ros::init(argc, argv, "voxel_pass_removal");
     ros::NodeHandle n;
 
     // Load parameters from launch file
@@ -133,10 +134,10 @@ int main(int argc, char **argv)
     nh_private.param<double>("mulThresh", mulThresh, 0.01);
 
     // Create Subscriber and listen subscribed_topic
-    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 48, cloud_cb);
+    ros::Subscriber sub = n.subscribe<sensor_msgs::PointCloud2>(subscribed_topic, 1, cloud_cb);
 
     // Create Publisher
-    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 48);
+    pub = n.advertise<sensor_msgs::PointCloud2>(published_topic, 1);
 
     // Spin
     ros::spin();

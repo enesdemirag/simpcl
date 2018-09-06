@@ -1,5 +1,5 @@
 <launch>
-    <node name="tf_broadcaster" pkg="filters" type="tf_broadcaster" output="screen">
+    <node name="tf_broadcaster" pkg="stereo_filters" type="tf_broadcaster" output="screen">
         <param name="subscribed_topic" type="string" value="/odom"/>
         <param name="base_frame" type="string" value="/world"/>
         <param name="child_frame" type="string" value="/zed_left_camera"/>

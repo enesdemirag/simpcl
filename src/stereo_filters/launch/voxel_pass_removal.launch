@@ -1,5 +1,5 @@
 <launch>
-    <node name="filter" pkg="filters" type="filter" output="screen">
+    <node name="voxel_pass_removal" pkg="stereo_filters" type="voxel_pass_removal" output="screen">
         <param name="subscribed_topic" type="string" value="/point_cloud/cloud_registered"/>
         <param name="published_topic" type="string" value="cloud_filtered"/>
         # Voxel Grid Filter parameters
