@@ -17,30 +17,29 @@ This package can work properly with all devices which produce point cloud data. 
     * Download the stable release from *[here](https://github.com/PointCloudLibrary/pcl/releases)* and follow these *[instructions](http://www.pointclouds.org/documentation/tutorials/compiling_pcl_posix.php)*
 
 * #### Install OctoMap
-```
-$ sudo apt-get install build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4
-$ sudo apt-get install ros-kinetic-octomap ros-kinetic-octomap-mapping
-$ rosdep install octomap_mapping
-$ rosmake octomap_mapping
-```
+    ```
+    $ sudo apt-get install build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4
+    $ sudo apt-get install ros-kinetic-octomap ros-kinetic-octomap-mapping
+    $ rosdep install octomap_mapping
+    $ rosmake octomap_mapping
+    ```
 
     There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/share/octomap_server/launch``` now
 
 ## Installation
 
-1. Get this repository as a catkin workspace
-```
-$ git clone -b simpcl https://github.com/enesdemirag/point-cloud-filters.git catkin_ws
-```
+* Get this repository as a catkin workspace
+    ```
+    $ git clone -b simpcl https://github.com/enesdemirag/point-cloud-filters.git catkin_ws
+    ```
 
-2. Build package
-```
-$ cd catkin_ws
-$ catkin build
-```
+* Build package
+    ```
+    $ cd catkin_ws
+    $ catkin build
+    ```
 
-3. Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/zed_filtering/tree/master/src/filters/launch)* directory.
-    * Parameters can easily be changed without the need to recompile.
+* Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/zed_filtering/tree/master/src/filters/launch)* directory. Parameters can easily be changed without the need to recompile.
 
 ## Usage
 
