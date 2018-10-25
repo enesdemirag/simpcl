@@ -36,10 +36,7 @@ int max_iteration;
 // Point CLoud Objects
 pcl::PCLPointCloud2* raw_cloud = new pcl::PCLPointCloud2;
 pcl::PCLPointCloud2ConstPtr cloudPtr1(raw_cloud);
-
-pcl::PCLPointCloud2 first_cloud;
-pcl::PCLPointCloud2 second_cloud;
-pcl::PCLPointCloud2 third_cloud;
+pcl::PCLPointCloud2 carrier_cloud;
 sensor_msgs::PointCloud2 carrier;
 
 pcl::PointCloud<pcl::PointXYZ> *cloudXYZ_one = new pcl::PointCloud<pcl::PointXYZ>;
@@ -56,25 +53,14 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
     pcl_conversions::toPCL(*cloud_msg, *raw_cloud); // Convert to PCL data type
 
-    // Perform the VoxelGrid Filter
-    pcl::VoxelGrid<pcl::PCLPointCloud2> v_filter;
-    v_filter.setInputCloud(cloudPtr1); // Pass raw_cloud to the filter
-    v_filter.setLeafSize(leaf_size_x, leaf_size_y, leaf_size_z); // Set leaf size
-    v_filter.filter(first_cloud); // Store output data in first_cloud
-
-    pcl_conversions::moveFromPCL(first_cloud, carrier); // Convert to ROS data type
-    pcl::PCLPointCloud2* voxel_cloud = new pcl::PCLPointCloud2;
-    pcl::PCLPointCloud2ConstPtr cloudPtr2(voxel_cloud);
-    pcl_conversions::toPCL(carrier, *voxel_cloud); // Convert to PCL data type
-
     // Perform the PassThrough Filter to the X axis
     pcl::PassThrough<pcl::PCLPointCloud2> px_filter;
-    px_filter.setInputCloud(cloudPtr2); // Pass filtered_cloud to the filter
+    px_filter.setInputCloud(cloudPtr1); // Pass filtered_cloud to the filter
     px_filter.setFilterFieldName("x"); // Set axis x
     px_filter.setFilterLimits(min_value_x, max_value_x); // Set limits min_value to max_value
-    px_filter.filter(second_cloud); // Restore output data in second_cloud
+    px_filter.filter(carrier_cloud); // Restore output data in second_cloud
 
-    pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
+    pcl_conversions::moveFromPCL(carrier_cloud, carrier); // Convert to ROS data type
     pcl::PCLPointCloud2* x_removed_cloud = new pcl::PCLPointCloud2;
     pcl::PCLPointCloud2ConstPtr cloudPtr_X(x_removed_cloud);
     pcl_conversions::toPCL(carrier, *x_removed_cloud); // Convert to PCL data type
@@ -84,9 +70,9 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     py_filter.setInputCloud(cloudPtr_X); // Pass filtered_cloud to the filter
     py_filter.setFilterFieldName("y"); // Set axis y
     py_filter.setFilterLimits(min_value_y, max_value_y); // Set limits min_value to max_value
-    py_filter.filter(second_cloud); // Restore output data in second_cloud
+    py_filter.filter(carrier_cloud); // Restore output data in second_cloud
 
-    pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
+    pcl_conversions::moveFromPCL(carrier_cloud, carrier); // Convert to ROS data type
     pcl::PCLPointCloud2* y_removed_cloud = new pcl::PCLPointCloud2;
     pcl::PCLPointCloud2ConstPtr cloudPtr_Y(y_removed_cloud);
     pcl_conversions::toPCL(carrier, *y_removed_cloud); // Convert to PCL data type
@@ -96,22 +82,33 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
     pz_filter.setInputCloud(cloudPtr_Y); // Pass filtered_cloud to the filter
     pz_filter.setFilterFieldName("z"); // Set axis z
     pz_filter.setFilterLimits(min_value_z, max_value_z); // Set limits min_value to max_value
-    pz_filter.filter(second_cloud); // Restore output data in second_cloud
+    pz_filter.filter(carrier_cloud); // Restore output data in second_cloud
 
-    pcl_conversions::moveFromPCL(second_cloud, carrier); // Convert to ROS data type
+    pcl_conversions::moveFromPCL(carrier_cloud, carrier); // Convert to ROS data type
     pcl::PCLPointCloud2* pass_cloud = new pcl::PCLPointCloud2;
-    pcl::PCLPointCloud2ConstPtr cloudPtr3(pass_cloud);
+    pcl::PCLPointCloud2ConstPtr cloudPtr2(pass_cloud);
     pcl_conversions::toPCL(carrier, *pass_cloud); // Convert to PCL data type
+
+    // Perform the VoxelGrid Filter
+    pcl::VoxelGrid<pcl::PCLPointCloud2> v_filter;
+    v_filter.setInputCloud(cloudPtr2); // Pass raw_cloud to the filter
+    v_filter.setLeafSize(leaf_size_x, leaf_size_y, leaf_size_z); // Set leaf size
+    v_filter.filter(carrier_cloud); // Store output data in first_cloud
+
+    pcl_conversions::moveFromPCL(carrier_cloud, carrier); // Convert to ROS data type
+    pcl::PCLPointCloud2* voxel_cloud = new pcl::PCLPointCloud2;
+    pcl::PCLPointCloud2ConstPtr cloudPtr3(voxel_cloud);
+    pcl_conversions::toPCL(carrier, *voxel_cloud); // Convert to PCL data type
 
     // Perform the Statistical Outlier Removal Filter
     pcl::StatisticalOutlierRemoval<pcl::PCLPointCloud2> s_filter;
     s_filter.setInputCloud(cloudPtr3); // Pass filtered_cloud to the filter
     s_filter.setMeanK(meanK); // Set the number of neighbors to analyze for each point
     s_filter.setStddevMulThresh(mulThresh); // Set standard deviation multiplier
-    s_filter.filter(third_cloud); // Restore output data in filtered_cloud
+    s_filter.filter(carrier_cloud); // Restore output data in filtered_cloud
 
     *cloudXYZPtr1 = *cloudXYZPtr2;
-    pcl::fromPCLPointCloud2(third_cloud, *cloudXYZPtr2);
+    pcl::fromPCLPointCloud2(carrier_cloud, *cloudXYZPtr2);
 }
 
 // main function
