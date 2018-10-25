@@ -39,7 +39,9 @@ This package can work properly with all devices which produce point cloud data. 
     $ catkin build
     ```
 
-* Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/zed_filtering/tree/master/src/filters/launch)* directory. Parameters can easily be changed without the need to recompile.
+* Or move *[src/simpcl/](https://github.com/enesdemirag/point-cloud-filters/tree/simpcl/src/simpcl)* package under your workspace.
+
+* Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/point-cloud-filters/tree/simpcl/src/simpcl/launch)* directory. Parameters can easily be changed without the need to recompile.
 
 ## Usage
 
@@ -53,4 +55,4 @@ $ roslaunch simpcl mapping.launch
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
