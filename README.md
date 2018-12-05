@@ -1,4 +1,4 @@
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
+![Build Status](https://travis-ci.com/enesdemirag/point-cloud-filters.svg?branch=simpcl) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
 # Simple Point Cloud Filtering Package
 <img align="right" src="https://web.itu.edu.tr/demirag16/img/simpcl_logo.png" height="152" width="360">
