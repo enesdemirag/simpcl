@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.com/enesdemirag/point-cloud-filters.svg?branch=simpcl) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
 # Simple Point Cloud Filtering Package
 <img align="right" src="https://web.itu.edu.tr/demirag16/img/simpcl_logo.png" height="152" width="360">
@@ -40,6 +40,11 @@ This package can work properly with all devices which produce point cloud data. 
     ```
 
 * Or move *[src/simpcl/](https://github.com/enesdemirag/point-cloud-filters/tree/simpcl/src/simpcl)* package under your workspace.
+
+* Source catkin workspace
+    ```
+    $ source devel/setup.bash
+    ```
 
 * Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/point-cloud-filters/tree/simpcl/src/simpcl/launch)* directory. Parameters can easily be changed without the need to recompile.
 
