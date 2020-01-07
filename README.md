@@ -54,7 +54,7 @@ This package can work properly with all devices which produce point cloud data. 
 $ roslaunch simpcl mapping.launch
 ```
 
-![alt text](https://github.com/enesdemirag/point-cloud-filters/blob/internship/images/icp.gif "Mapping with ICP")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/icp.gif "Mapping with ICP")
 
 ## Author
 
@@ -63,3 +63,7 @@ $ roslaunch simpcl mapping.launch
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Interested in contributing to my repo? Fork, and open a pull request. I'll try to merge as soon as possible. If you found any mistake or you have advice, feel free to open an issue.
