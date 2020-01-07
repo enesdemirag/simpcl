@@ -30,7 +30,7 @@ This package can work properly with all devices which produce point cloud data. 
 
 * Get this repository as a catkin workspace
     ```
-    $ git clone -b simpcl https://github.com/enesdemirag/simpcl.git catkin_ws
+    $ git clone https://github.com/enesdemirag/simpcl.git catkin_ws
     ```
 
 * Build package
