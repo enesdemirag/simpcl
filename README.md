@@ -54,11 +54,11 @@ This package can work properly with all devices which produce point cloud data. 
 $ roslaunch simpcl mapping.launch
 ```
 
-![alt text](https://github.com/enesdemirag/zed_filtering/blob/master/images/icp.gif "Mapping with ICP")
+![alt text](https://github.com/enesdemirag/point-cloud-filters/blob/internship/images/icp.gif "Mapping with ICP")
 
 ## Author
 
-* **Enes Demirağ** <demirag16@itu.edu.tr> - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)*
+* **Enes Demirağ** <ensdmrg@gmail.com> - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)*
 
 ## License
 
