@@ -1,25 +1,25 @@
 # Documents about Point Cloud Processing #
 
-* **An Efficient Probabilistic 3D Mapping Framework Based on Octrees** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/OctoMap.pdf)*
+* **An Efficient Probabilistic 3D Mapping Framework Based on Octrees** - *[Article](#)*
 
 * **3D Mapping with OctoMap** - *[Presentation](http://www2.informatik.uni-freiburg.de/~hornunga/pub/hornung13roscon.pdf)*
 
-* **Fast Resampling of 3D Point Clouds via Graphs.** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/FastResamplingof3DPointCloudsviaGraphs.pdf)*
+* **Fast Resampling of 3D Point Clouds via Graphs.** - *[Article](#)*
 
-* **Modeling the World Around Us** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/MappingOverview.pdf)*
+* **Modeling the World Around Us** - *[Presentation](#)*
 
-* **Point Cloud Library: Filtering** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/Filtering.pdf)*
+* **Point Cloud Library: Filtering** - *[Presentation](#)*
 
-* **Pairwise, Rigid Registration The ICP Algorithm and Its Variants** - *[Presentation](Pairwise-RigidRegistration.pdf)*
+* **Pairwise, Rigid Registration The ICP Algorithm and Its Variants** - *[Presentation](#)*
 
-* **Point Cloud Segmentation and Classification Algorithms** - *[Report](http://web.itu.edu.tr/demirag16/media/docs/PointCloudSegmentationAndClassificationAlgorithms.pdf)*
+* **Point Cloud Segmentation and Classification Algorithms** - *[Report](#)*
 
-* **Progressive Morphological Filter for Removing Nonground Measurements** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/ProgressiveMorphologicalFilter.pdf)*
+* **Progressive Morphological Filter for Removing Nonground Measurements** - *[Article](#)*
 
-* **Difference of Normals as a Multi-Scale Operator in Unorganized Point Clouds** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/DoNSegmentation.pdf)*
+* **Difference of Normals as a Multi-Scale Operator in Unorganized Point Clouds** - *[Article](#)*
 
-* **Plane Detection and Segmentation For DARPA Robotics Challange** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/PlaneDetectionandSegmentation.pdf)*
+* **Plane Detection and Segmentation For DARPA Robotics Challange** - *[Article](#)*
 
-* **Automated Extraction of Urban Road Facilities** - *[Article](http://web.itu.edu.tr/demirag16/media/docs/StudiesonGroundRemoval.pdf)*
+* **Automated Extraction of Urban Road Facilities** - *[Article](#)*
 
-* **ICP Algorithm and Its Variants** - *[Presentation](http://web.itu.edu.tr/demirag16/media/docs/Pairwise-RigidRegistration.pdf)*
+* **ICP Algorithm and Its Variants** - *[Presentation](#)*
