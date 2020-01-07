@@ -30,7 +30,7 @@ This package can work properly with all devices which produce point cloud data. 
 
 * Get this repository as a catkin workspace
     ```
-    $ git clone -b simpcl https://github.com/enesdemirag/point-cloud-filters.git catkin_ws
+    $ git clone -b simpcl https://github.com/enesdemirag/simpcl.git catkin_ws
     ```
 
 * Build package
@@ -39,14 +39,14 @@ This package can work properly with all devices which produce point cloud data. 
     $ catkin build
     ```
 
-* Or move *[src/simpcl/](https://github.com/enesdemirag/point-cloud-filters/tree/simpcl/src/simpcl)* package under your workspace.
+* Or move *[src/simpcl/](https://github.com/enesdemirag/simpcl/tree/simpcl/src/simpcl)* package under your workspace.
 
 * Source catkin workspace
     ```
     $ source devel/setup.bash
     ```
 
-* Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/point-cloud-filters/tree/simpcl/src/simpcl/launch)* directory. Parameters can easily be changed without the need to recompile.
+* Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/simpcl/tree/simpcl/src/simpcl/launch)* directory. Parameters can easily be changed without the need to recompile.
 
 ## Usage
 
@@ -58,7 +58,7 @@ $ roslaunch simpcl mapping.launch
 
 ## Author
 
-* **Enes Demirağ** <ensdmrg@gmail.com> - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)*
+* **Enes Demirağ** <ensdmrg@gmail.com> - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)* *[Website](https://enesdemirag.github.io)*
 
 ## License
 
