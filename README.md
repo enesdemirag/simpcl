@@ -1,7 +1,7 @@
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
 # Simple Point Cloud Filtering Package
-<img align="right" src="https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl.png?token=AGJG3QDLUDNYQO4JC66J7E26DWZRS" height="165" width="360">
+<img align="right" src="https://github.com/enesdemirag/simpcl/raw/internship/images/simpcl.png" height="165" width="360">
 
 This package can work properly with all devices which produce point cloud data. (Stereo Cameras, RGB-D Cameras, LiDARs etc.) *[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)* and *[OctoMap](https://github.com/OctoMap/octomap_mapping)* used on ROS platform.
 
