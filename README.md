@@ -1,6 +1,6 @@
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
-# Point Cloud Filtering <img align="right" src="https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/logo.png?token=AGJG3QEMBM7TZCITPL35TPC6DXC7W">
+# Point Cloud Filtering <img align="right" src="https://github.com/enesdemirag/simpcl/blob/internship/images/logo.png">
 
 My internship project in *[Ravinspect](http://www.ravinspect.com)*. Filtering point cloud data coming from ZED camera in real-time.
 
@@ -28,19 +28,19 @@ There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/shar
 # Filtering Results #
 
 ### Raw Point Cloud
-![alt text](https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/otopark_raw.png?token=AGJG3QBSUWFLXA4Y52JZKX26DXDBW "Raw Point Cloud Data")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/otopark_raw.png "Raw Point Cloud Data")
 ### Downsampling with "Voxel Grid Filter"
-![alt text](https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/otopark_voxel.png?token=AGJG3QDX4LAXA3AYJPRMVR26DXDBY "Voxel Grid Filter")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/otopark_voxel.png "Voxel Grid Filter")
 ### Getting points between 0.5m to 18m with "Passthrough Filter"
-![alt text](https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/otopark_passthrough.png?token=AGJG3QGQECK2AXMB54F6QIS6DXDB2 "Voxel Grid Filter")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/otopark_passthrough.png "Voxel Grid Filter")
 ### Removing noise with "Statistical Outlier Removal Filter"
-![alt text](https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/otopark_statistical.png?token=AGJG3QBRTUUKMNNHCKGCZH26DXDFC "Statistical Outlier Removal Filter")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/otopark_statistical.png "Statistical Outlier Removal Filter")
 ### 3D mapping with OctoMap
 ![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/octomap_otopark.gif "Mapping using Odometry and Point Cloud data simultaneously")
 ### Mapping Graph
-![alt text](https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/mapping_graph.png?token=AGJG3QHZ4GBA2I7EOBQ36I26DXDFI "from rqt_graph")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/mapping_graph.png "from rqt_graph")
 ### Filtering Graph
-![alt text](https://raw.githubusercontent.com/enesdemirag/enesdemirag.github.io/master/images/simpcl/filtering_graph.png?token=AGJG3QFKWYE3VLMM76HI4YS6DXDFK "from rqt_graph")
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/filtering_graph.png "from rqt_graph")
 ---
 # How to Use #
 
