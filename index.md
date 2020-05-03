@@ -1,37 +1,73 @@
-## Welcome to GitHub Pages
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://enesdemirag.mit-license.org)
 
-You can use the [editor on GitHub](https://github.com/enesdemirag/simpcl/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+# Simple Point Cloud Filtering Package
+<img align="right" src="https://github.com/enesdemirag/simpcl/raw/internship/images/simpcl.png" height="165" width="360">
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This package can work properly with all devices which produce point cloud data. (Stereo Cameras, RGB-D Cameras, LiDARs etc.) *[Point Cloud Library (PCL)](https://github.com/PointCloudLibrary/pcl)* and *[OctoMap](https://github.com/OctoMap/octomap_mapping)* used on ROS platform.
 
-### Markdown
+## Requirements
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* #### Install Ubuntu 16.04
+    * Follow *[these steps](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop)* to install Ubuntu 16.04 operating system
 
-```markdown
-Syntax highlighted code block
+* #### Install ROS Kinetic
+    * Check out the *[official website](http://wiki.ros.org/kinetic/Installation)*
 
-# Header 1
-## Header 2
-### Header 3
+* #### Install Point Cloud Library
+    * Download the stable release from *[here](https://github.com/PointCloudLibrary/pcl/releases)* and follow these *[instructions](http://www.pointclouds.org/documentation/tutorials/compiling_pcl_posix.php)*
 
-- Bulleted
-- List
+* #### Install OctoMap
+    ```
+    $ sudo apt-get install build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4
+    $ sudo apt-get install ros-kinetic-octomap ros-kinetic-octomap-mapping
+    $ rosdep install octomap_mapping
+    $ rosmake octomap_mapping
+    ```
 
-1. Numbered
-2. List
+    There should be ```octomap_mapping.launch``` file under ```/opt/ros/kinetic/share/octomap_server/launch``` now
 
-**Bold** and _Italic_ and `Code` text
+## Installation
 
-[Link](url) and ![Image](src)
+* Get this repository as a catkin workspace
+    ```
+    $ git clone https://github.com/enesdemirag/simpcl.git catkin_ws
+    ```
+
+* Build package
+    ```
+    $ cd catkin_ws
+    $ catkin build
+    ```
+
+* Or move *[src/simpcl/](https://github.com/enesdemirag/simpcl/tree/simpcl/src/simpcl)* package under your workspace.
+
+* Source catkin workspace
+    ```
+    $ source devel/setup.bash
+    ```
+
+* Launch files are under the *[src/simpcl/launch](https://github.com/enesdemirag/simpcl/tree/simpcl/src/simpcl/launch)* directory. Parameters can easily be changed without the need to recompile.
+
+## Usage
+
+```
+$ roslaunch simpcl mapping.launch
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+![alt text](https://github.com/enesdemirag/simpcl/raw/internship/images/icp.gif "Mapping with ICP")
 
-### Jekyll Themes
+## Author
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/enesdemirag/simpcl/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+* **Enes Demirağ** <ensdmrg@gmail.com> - *[LinkedIn](https://www.linkedin.com/in/enesdemirag/)* *[Website](https://enesdemirag.github.io)*
 
-### Support or Contact
+## License
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Interested in contributing to my repo? Fork, and open a pull request. I'll try to merge as soon as possible. If you found any mistake or you have advice, feel free to open an issue.
+
+## More
+
+You can reach work in progress and all filters including unstable ones from [here](https://github.com/enesdemirag/simpcl/tree/internship).
