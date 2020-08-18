@@ -1,0 +1,17 @@
+<launch>
+    <node name="color_filter" pkg="simpcl" type="color_filter" output="screen">
+        <remap from="points_in" to="/points"/>
+        <remap from="points_out" to="/points/filtered"/>
+        
+        <param name="use_hsi" type="int" value="0"/>
+        
+        <param name="r_min" type="double" value="50"/>
+        <param name="r_max" type="double" value="255"/>
+
+        <param name="g_min" type="double" value="50"/>
+        <param name="g_max" type="double" value="255"/>
+
+        <param name="b_min" type="double" value="50"/>
+        <param name="b_max" type="double" value="255"/>
+    </node>
+</launch>

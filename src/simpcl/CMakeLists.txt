@@ -41,6 +41,16 @@ target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
 
 # ------------------------------------------------------- #
 
+# Color Filter Node
+add_executable(color_filter src/filters/color_filter.cpp)
+target_link_libraries(color_filter ${PCL_LIBRARIES})
+target_link_libraries(color_filter ${catkin_LIBRARIES})
+
+# CropBox Filter Node
+add_executable(cropbox_filter src/filters/cropbox_filter.cpp)
+target_link_libraries(cropbox_filter ${PCL_LIBRARIES})
+target_link_libraries(cropbox_filter ${catkin_LIBRARIES})
+
 # VoxelGrid Filter Node
 add_executable(voxel_filter src/filters/voxel_filter.cpp)
 target_link_libraries(voxel_filter ${PCL_LIBRARIES})

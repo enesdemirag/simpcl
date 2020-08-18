@@ -1,0 +1,23 @@
+<launch>
+    <node name="cropbox_filter" pkg="simpcl" type="cropbox_filter" output="screen">
+        <remap from="points_in" to="/points"/>
+        <remap from="points_out" to="/points/filtered"/>
+
+        <!-- Use Transformation from one frame to another -->
+        <!-- Set use_transform to 0 to use the original frame -->
+        <param name="use_transform" type="int" value="1"/>
+        <param name="base_frame" type="string" value="/scan"/>
+        <param name="target_frame" type="string" value="/base_link"/>
+
+
+        <!-- Below axes are defined in target_frame if use_transform is 1-->
+        <param name="x_min" type="double" value="-1.5"/>
+        <param name="x_max" type="double" value="1.5"/>
+
+        <param name="y_min" type="double" value="-1.5"/>
+        <param name="y_max" type="double" value="1.5"/>
+
+        <param name="z_min" type="double" value="0.1"/>
+        <param name="z_max" type="double" value="1.0"/>
+    </node>
+</launch>
